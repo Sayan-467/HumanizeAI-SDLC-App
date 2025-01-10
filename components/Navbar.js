@@ -1,97 +1,102 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { useTransition } from 'react'
-import { logout } from '../app/actions'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Menu } from 'lucide-react'
 
-export function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+const navItems = [
+  { name: 'Projects', href: '/projects' },
+  { name: 'Tasks', href: '/tasks' },
+  { name: 'Team', href: '/team' },
+]
 
+export function Navbar({ onLoginClick }) {
+  const [hoveredPath, setHoveredPath] = useState(null)
+  const pathname = usePathname()
 
-    const LogoutButton = () => {
-        const [isPending, startTransition] = useTransition()
-
-        return (
-            <Button
-                variant="ghost"
-                className="text-primary hover:text-accent"
-                onClick={() => startTransition(() => logout())}
-                disabled={isPending}
+  return (
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-accent/20 px-4 py-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="text-2xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+                AI-SDLC Manager
+              </span>
+            </Link>
+          </div>
+          <div className="hidden md:flex items-center space-x-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative px-3 py-2 text-sm font-medium text-primary transition-colors hover:text-accent"
+                onMouseEnter={() => setHoveredPath(item.href)}
+                onMouseLeave={() => setHoveredPath(null)}
+              >
+                <span>{item.name}</span>
+                {pathname === item.href && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-accent"
+                    layoutId="navbar"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 350,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                {hoveredPath === item.href && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-accent"
+                    layoutId="navbar"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 350,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
+          <div className="flex items-center space-x-4">
+            <Button 
+              onClick={onLoginClick}
+              className="bg-accent hover:bg-accent/80 text-accent-foreground"
             >
-                {isPending ? 'Logging out...' : 'Log out'}
+              Login
             </Button>
-        )
-    }
-
-    return (
-        <nav className="bg-secondary">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
-                    <div className="flex">
-                        <div className="flex-shrink-0 flex items-center">
-                            <Link href="/" className="text-xl font-bold text-primary">
-                                AI-SDLC Manager
-                            </Link>
-                        </div>
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <Link href="/projects" className="text-primary hover:text-accent inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-accent text-sm font-medium">
-                                Projects
-                            </Link>
-                            <Link href="/tasks" className="text-primary hover:text-accent inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-accent text-sm font-medium">
-                                Tasks
-                            </Link>
-                            <Link href="/team" className="text-primary hover:text-accent inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-accent text-sm font-medium">
-                                Team
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        <LogoutButton />
-                    </div>
-                    <div className="-mr-2 flex items-center sm:hidden">
-                        <Button
-                            variant="ghost"
-                            className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-expanded={isMenuOpen}
-                        >
-                            <span className="sr-only">Open main menu</span>
-                            {isMenuOpen ? (
-                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            ) : (
-                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            )}
-                        </Button>
-                    </div>
-                </div>
+            <div className="md:hidden">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {navItems.map((item) => (
+                    <DropdownMenuItem key={item.href} asChild>
+                      <Link href={item.href}>{item.name}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-
-            {isMenuOpen && (
-                <div className="sm:hidden">
-                    <div className="pt-2 pb-3 space-y-1">
-                        <Link href="/projects" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-primary hover:text-accent hover:bg-secondary hover:border-accent">
-                            Projects
-                        </Link>
-                        <Link href="/tasks" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-primary hover:text-accent hover:bg-secondary hover:border-accent">
-                            Tasks
-                        </Link>
-                        <Link href="/team" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-primary hover:text-accent hover:bg-secondary hover:border-accent">
-                            Team
-                        </Link>
-                    </div>
-                    <div className="pt-4 pb-3 border-t border-secondary">
-                        <div className="mt-3 space-y-1">
-                            <LogoutButton />
-                        </div>
-                    </div>
-                </div>
-            )}
-        </nav>
-    )
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
 }
+

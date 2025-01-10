@@ -20,11 +20,13 @@ import { Label } from "@/components/ui/label"
 
 
 export default function ProjectListPage() {
-    const projects = [
-        { id: 1, name: 'E-commerce Platform', status: 'In Progress' },
-        { id: 2, name: 'CRM System', status: 'Planning' },
-        { id: 3, name: 'Mobile App', status: 'Testing' },
-    ]
+    const [isDialougeOpen, setIsDialougeOpen] = useState(false)
+
+    const [projects, setProjects] = useState([
+        { id: 1, name: 'E-commerce Platform', product: 'SAP S4 HANA', project: 'Greenfield', status: 'In Progress' },
+        { id: 2, name: 'CRM System', product: 'Service Now', project: 'Greenfield', status: 'Planning' },
+        { id: 3, name: 'Mobile App', product: 'SFDC', project: 'Migration', status: 'Testing' },
+    ])
 
     const SubmitButton = () => {
         const { pending } = useFormStatus()
@@ -35,12 +37,46 @@ export default function ProjectListPage() {
         )
     }
 
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'In Progress':
+                return 'bg-green-500/20 border-green-500/50';
+            case 'Planning':
+                return 'bg-violet-500/20 border-violet-500/50';
+            case 'Testing':
+                return 'bg-yellow-500/20 border-yellow-500/50';
+            default:
+                return 'bg-secondary/50 border-accent/20';
+        }
+    }
+
+    const addProject = (data) => {
+        const name = data.get('name')
+        const product = data.get('product')
+        const project = data.get('project')
+        const desc = data.get('description')
+        const status = data.get('status')
+
+        const newProject = {
+            id: projects.length + 1,
+            name,
+            product,
+            project,
+            desc, 
+            status
+        }
+
+        setProjects([...projects, newProject])
+        setIsDialougeOpen(false)
+    }
+
     return (
         <div className="space-y-6 px-12 py-4 my-2">
-            <h1 className="text-3xl font-bold text-primary">Projects</h1>
+            <h1 className="text-4xl font-bold text-primary">Projects</h1>
             <div className="flex justify-between items-center">
                 <Input className="w-64 bg-background/50 text-primary placeholder:text-primary/50" type="search" placeholder="Search projects..." />
-                <Dialog>
+                <Dialog open={isDialougeOpen} onOpenChange={setIsDialougeOpen}>
                     <DialogTrigger asChild>
                         <Button className="bg-accent hover:bg-accent/80 text-accent-foreground">Add New Project</Button>
                     </DialogTrigger>
@@ -59,6 +95,24 @@ export default function ProjectListPage() {
                                         id="name"
                                         name="name"
                                         placeholder="Project name"
+                                        className="col-span-3 bg-background/50 text-primary placeholder:text-primary/50"
+                                    />
+                                    <Label htmlFor="product" className="text-right">
+                                        Product Type
+                                    </Label>
+                                    <Input
+                                        id="product"
+                                        name="product"
+                                        placeholder="Product Type"
+                                        className="col-span-3 bg-background/50 text-primary placeholder:text-primary/50"
+                                    />
+                                    <Label htmlFor="project" className="text-right">
+                                        Project Type
+                                    </Label>
+                                    <Input
+                                        id="project"
+                                        name="project"
+                                        placeholder="Project Type"
                                         className="col-span-3 bg-background/50 text-primary placeholder:text-primary/50"
                                     />
                                 </div>
@@ -83,10 +137,12 @@ export default function ProjectListPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map(project => (
-                    <Card key={project.id} className="bg-secondary/50 backdrop-blur-sm border-accent/20">
+                    <Card key={project.id} className={`bg-secondary/50 backdrop-blur-sm border-accent/20`}>
                         <CardHeader>
-                            <CardTitle className="text-primary">{project.name}</CardTitle>
-                            <CardDescription className="text-primary/70">Status: {project.status}</CardDescription>
+                            <CardTitle className="text-primary font-semibold text-xl">{project.name}</CardTitle>
+                            <CardDescription className="text-primary/70"><span className='font-semibold text-lg'>Product Type: </span> <span className='text-lg'>{project.product}</span></CardDescription>
+                            <CardDescription className="text-primary/70"><span className='font-semibold text-lg'>Project Type: </span> <span className='text-lg'>{project.project}</span></CardDescription>
+                            <CardDescription className="text-primary/70"><span className='font-semibold text-lg'>Status: </span> <span className={`px-2 py-1 text-lg ${getStatusColor(project.status)}`}>{project.status}</span></CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Link href={`/projects/${project.id}`}>

@@ -34,7 +34,7 @@ export function Navbar({ onLoginClick }) {
               </span>
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          {/* <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -68,7 +68,7 @@ export function Navbar({ onLoginClick }) {
                 )}
               </Link>
             ))}
-          </div>
+          </div> */}
           <div className="flex items-center space-x-4">
             <Button 
               onClick={onLoginClick}

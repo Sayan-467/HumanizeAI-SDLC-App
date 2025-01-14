@@ -105,7 +105,12 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Custom Report (WRICEF) code generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-primary/70">Generate code for a custom report that is not present in SAP by default</p>
+            <p className="text-primary/70 mb-4">Generate code for a custom report that is not present in SAP by default</p>
+            <Link href="/custom-report-generation">
+              <Button className="bg-accent hover:bg-accent/80 text-accent-foreground">
+                Generate Custom Report
+              </Button>
+            </Link>
           </CardContent>
         </Card>
         <Card className="bg-secondary/50 backdrop-blur-sm border-accent/20">
@@ -161,3 +166,4 @@ export function ProjectTabs({ projectType }) {
     </Tabs>
   )
 }
+

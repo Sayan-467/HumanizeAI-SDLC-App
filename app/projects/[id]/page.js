@@ -7,14 +7,13 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { ProjectTabs } from '@/components/project-tabs'
 import Link from 'next/link'
 
-// This would typically come from an API or database
 const projectsData = [
   { 
     id: 1, 
     name: 'E-commerce Platform', 
     status: 'In Progress', 
     description: 'Building a scalable e-commerce solution with modern technologies.',
-    type: 'SAP' // Added type field
+    type: 'SAP' 
   },
   { 
     id: 2, 
@@ -60,7 +59,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-28 py-8">
       <div className="mb-8">
         <Link href="/projects">
           <Button variant="outline" className="mb-4">

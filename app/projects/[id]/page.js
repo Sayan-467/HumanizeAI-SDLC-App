@@ -48,7 +48,7 @@ export default function ProjectPage() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'In Progress':
-        return 'bg-green-500/20 border-green-500/50';
+        return 'bg-green-700/20 border-green-500/50';
       case 'Planning':
         return 'bg-violet-500/20 border-violet-500/50';
       case 'Testing':

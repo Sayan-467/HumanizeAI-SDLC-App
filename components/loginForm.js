@@ -27,9 +27,10 @@ export function LoginForm({ onSuccess }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-      <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+    <form onSubmit={handleSubmit} className="space-y-6 mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-center text-blue-600">Log In</h2>
+      <div className="space-y-4">
+        <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email</Label>
         <Input
           id="email"
           type="email"
@@ -37,11 +38,11 @@ export function LoginForm({ onSuccess }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="bg-background/50 text-primary placeholder:text-primary/50"
+          className="fancy-border"
         />
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+      <div className="space-y-4">
+        <Label htmlFor="password" className="text-sm font-medium text-gray-700">Password</Label>
         <Input
           id="password"
           type="password"
@@ -49,12 +50,12 @@ export function LoginForm({ onSuccess }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="bg-background/50 text-primary placeholder:text-primary/50"
+          className="fancy-border"
         />
       </div>
       <Button
         type="submit"
-        className="w-full bg-accent hover:bg-accent/80 text-accent-foreground"
+        className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 rounded-md hover:from-blue-600 hover:to-blue-800 transition-all"
         disabled={isLoading}
       >
         {isLoading ? 'Logging in...' : 'Log In'}
@@ -62,4 +63,3 @@ export function LoginForm({ onSuccess }) {
     </form>
   )
 }
-

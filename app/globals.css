@@ -1,42 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 210 75% 95%; /* Light blue background */
+    --foreground: 210 45% 20%; /* Darker blue foreground */
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: 210 60% 90%; /* Muted light blue */
+    --muted-foreground: 210 35% 50%; /* Subtle blue-gray foreground */
 
-    --accent: 263 70% 50%;
-    --accent-foreground: 210 40% 98%;
+    --popover: 210 75% 95%; /* Same as background */
+    --popover-foreground: 210 45% 20%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
+    --card: 210 80% 98%; /* Very light blue for cards */
+    --card-foreground: 210 45% 20%;
 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
+    --border: 210 60% 85%; /* Soft blue for borders */
+    --input: 210 60% 85%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --primary: 210 70% 50%; /* Vibrant blue for primary actions */
+    --primary-foreground: 210 90% 98%; /* Light foreground for contrast */
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 210 60% 90%; /* Muted light blue */
+    --secondary-foreground: 210 70% 50%;
 
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
+    --accent: 210 70% 60%; /* Brighter accent blue */
+    --accent-foreground: 210 90% 98%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 80% 70%; /* Retain red for destructive actions */
+    --destructive-foreground: 210 90% 98%;
 
-    --ring: 216 34% 17%;
-
-    --radius: 0.5rem;
+    --ring: 210 60% 70%; /* Soft ring effect */
+    --radius: 0.5rem; /* Consistent border radius */
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -46,3 +45,28 @@
   }
 }
 
+@layer utilities {
+  .fancy-glass {
+    @apply bg-white/50 backdrop-blur-md border border-border shadow-lg;
+  }
+  
+  .fancy-gradient {
+    @apply bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500; /* Gradient with light blues */
+  }
+
+  .fancy-text-glow {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.7); /* Blue text glow */
+  }
+
+  .fancy-border {
+    @apply border-2 border-border hover:border-blue-400 transition-colors duration-300; /* Light blue border hover */
+  }
+
+  .fancy-shadow {
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300; /* Subtle shadows */
+  }
+
+  .fancy-button {
+    @apply bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-700 transition-all duration-300; /* Light to dark blue gradient */
+  }
+}

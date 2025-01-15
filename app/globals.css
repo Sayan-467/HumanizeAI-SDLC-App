@@ -4,35 +4,48 @@
 
 @layer base {
   :root {
-    --background: 210 75% 95%; /* Light blue background */
-    --foreground: 210 45% 20%; /* Darker blue foreground */
-
-    --muted: 210 60% 90%; /* Muted light blue */
-    --muted-foreground: 210 35% 50%; /* Subtle blue-gray foreground */
-
-    --popover: 210 75% 95%; /* Same as background */
-    --popover-foreground: 210 45% 20%;
-
-    --card: 210 80% 98%; /* Very light blue for cards */
-    --card-foreground: 210 45% 20%;
-
-    --border: 210 60% 85%; /* Soft blue for borders */
-    --input: 210 60% 85%;
-
-    --primary: 210 70% 50%; /* Vibrant blue for primary actions */
-    --primary-foreground: 210 90% 98%; /* Light foreground for contrast */
-
-    --secondary: 210 60% 90%; /* Muted light blue */
-    --secondary-foreground: 210 70% 50%;
-
-    --accent: 210 70% 60%; /* Brighter accent blue */
-    --accent-foreground: 210 90% 98%;
-
-    --destructive: 0 80% 70%; /* Retain red for destructive actions */
-    --destructive-foreground: 210 90% 98%;
-
-    --ring: 210 60% 70%; /* Soft ring effect */
-    --radius: 0.5rem; /* Consistent border radius */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 215 20.2% 65.1%;
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
@@ -45,28 +58,35 @@
   }
 }
 
-@layer utilities {
-  .fancy-glass {
-    @apply bg-white/50 backdrop-blur-md border border-border shadow-lg;
-  }
-  
-  .fancy-gradient {
-    @apply bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500; /* Gradient with light blues */
-  }
-
-  .fancy-text-glow {
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.7); /* Blue text glow */
-  }
-
-  .fancy-border {
-    @apply border-2 border-border hover:border-blue-400 transition-colors duration-300; /* Light blue border hover */
-  }
-
-  .fancy-shadow {
-    @apply shadow-lg hover:shadow-xl transition-shadow duration-300; /* Subtle shadows */
-  }
-
-  .fancy-button {
-    @apply bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-700 transition-all duration-300; /* Light to dark blue gradient */
-  }
+.fancy-glass {
+  @apply bg-white/70 backdrop-blur-md border border-gray-200 shadow-lg;
 }
+
+.fancy-gradient {
+  @apply bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500;
+}
+
+.fancy-text-glow {
+  text-shadow: 0 0 10px rgba(66, 153, 225, 0.5);
+}
+
+.fancy-border {
+  @apply border-2 border-gray-200 hover:border-blue-500 transition-colors duration-300;
+}
+
+.fancy-button {
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300;
+}
+
+.accordion-content {
+  @apply overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+.accordion-content[data-state='open'] {
+  @apply animate-accordion-down;
+}
+
+.accordion-content[data-state='closed'] {
+  @apply animate-accordion-up;
+}
+

@@ -41,13 +41,13 @@ export default function CustomReportGenerationPage() {
         </Button>
       </Link>
       <h1 className="text-3xl font-bold text-primary mb-6">Custom Report Generation</h1>
-      
+
       <Tabs defaultValue="new" className="space-y-4">
         <TabsList className="grid w-full grid-cols-2 fancy-glass">
           <TabsTrigger value="new" className="fancy-border">New Report</TabsTrigger>
           <TabsTrigger value="existing" className="fancy-border">Existing Reports</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="new">
           <Card className="fancy-glass fancy-shadow">
             <CardHeader>
@@ -56,15 +56,23 @@ export default function CustomReportGenerationPage() {
             <CardContent>
               <form onSubmit={handleNewReport} className="space-y-4">
                 <div className="space-y-2">
+                  <Label htmlFor="requirement">Upload Excel File</Label>
+                  <Input id="requirement" name="requirement" type="file" required className="fancy-border" />
+                </div>
+                <div className="space-y-2">
                   <Label htmlFor="reportName">Report Name</Label>
                   <Input id="reportName" name="reportName" placeholder="Enter report name" required className="fancy-border" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="requirement">Requirement File</Label>
-                  <Input id="requirement" name="requirement" type="file" required className="fancy-border" />
+                  <Label htmlFor="instructions">Instructions to Generate Code (Optional)</Label>
+                  <Textarea id="instructions" name="instructions" placeholder="Enter instructions" required className="fancy-border" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="instructions">Instructions to Generate Code</Label>
+                  <Label htmlFor="instructions">Selection Parameters</Label>
+                  <Textarea id="instructions" name="instructions" placeholder="Enter instructions" required className="fancy-border" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="instructions">Report Fields</Label>
                   <Textarea id="instructions" name="instructions" placeholder="Enter instructions" required className="fancy-border" />
                 </div>
                 <Button type="submit" className="fancy-button">Create Report</Button>
@@ -72,7 +80,7 @@ export default function CustomReportGenerationPage() {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="existing">
           <Card className="fancy-glass fancy-shadow">
             <CardHeader>

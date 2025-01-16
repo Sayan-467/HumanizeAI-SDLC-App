@@ -62,7 +62,7 @@ export default function ProjectListPage() {
             name,
             product,
             project,
-            desc, 
+            desc,
             status
         }
 
@@ -72,6 +72,11 @@ export default function ProjectListPage() {
 
     return (
         <div className="space-y-6 px-12 py-4 my-2">
+            <Link href="/">
+                <Button variant="outline" className="mb-4 fancy-border">
+                    ← Back to Home Page
+                </Button>
+            </Link>
             <h1 className="text-4xl font-bold text-primary">Projects</h1>
             <div className="flex justify-between items-center">
                 <Input className="w-64 bg-background/50 text-primary placeholder:text-primary/50" type="search" placeholder="Search projects..." />

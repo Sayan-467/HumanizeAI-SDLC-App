@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { PlusCircle } from 'lucide-react';
+import Link from 'next/link';
 import { BRDSection } from '@/components/brd-section';
 import { AddSectionModal } from '@/components/add-section-modal';
 
@@ -20,6 +21,30 @@ const initialSections = [
     fields: ['Content', 'Instructions for text generation', 'File upload'],
   },
   {
+    id: 'scope',
+    title: 'Scope of the document',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'material',
+    title: 'Introduction to Material management',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'area',
+    title: 'Business Areas',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
     id: 'org-structure',
     title: 'Organization structure',
     fields: [
@@ -27,6 +52,54 @@ const initialSections = [
       'Instructions for text generation',
       'File upload for text generation',
       'Files to be embedded',
+    ],
+  },
+  {
+    id: 'kds',
+    title: 'Key Document Structure',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'process',
+    title: 'Process Scope',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'process-flow',
+    title: 'Relevant process flows of Material Management',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'data',
+    title: 'Master Data',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'soln',
+    title: 'Solution Data',
+    fields: [
+      'Content',
+      'Description'
+    ],
+  },
+  {
+    id: 'forms',
+    title: 'Material Management Reports and Forms List',
+    fields: [
+      'Content',
+      'Description'
     ],
   },
 ];
@@ -42,6 +115,11 @@ export default function BRDGenerationPage() {
 
   return (
     <div className="container mx-auto px-28 py-16">
+      <Link href="/projects/1">
+        <Button variant="outline" className="mb-4 fancy-border">
+          ← Back to Project
+        </Button>
+      </Link>
       <h1 className="text-3xl font-bold text-primary mb-6">BRD Generation</h1>
       <Accordion type="single" collapsible className="w-full space-y-4">
         {sections.map((section) => (

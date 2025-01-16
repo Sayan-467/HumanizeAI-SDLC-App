@@ -90,3 +90,19 @@
   @apply animate-accordion-up;
 }
 
+.fancy-file-upload {
+  @apply relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.fancy-file-upload:hover {
+  @apply transform scale-105 transition-transform duration-200 ease-in-out;
+}
+
+.fancy-file-upload input[type="file"] {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer;
+}
+
+.fancy-file-upload svg {
+  @apply mr-2 h-5 w-5 text-gray-400;
+}
+

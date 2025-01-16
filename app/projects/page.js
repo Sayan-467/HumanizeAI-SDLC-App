@@ -71,7 +71,7 @@ export default function ProjectListPage() {
     }
 
     return (
-        <div className="space-y-6 px-12 py-4 my-2">
+        <div className="space-y-6 px-16 py-4 my-2">
             <Link href="/">
                 <Button variant="outline" className="mb-4 fancy-border">
                     ← Back to Home Page

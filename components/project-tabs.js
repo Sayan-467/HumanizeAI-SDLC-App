@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
+import { Upload } from 'lucide-react'
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 export function ProjectTabs({ projectType }) {
   return (
@@ -21,10 +24,46 @@ export function ProjectTabs({ projectType }) {
       <TabsContent value="discover" className="mt-6">
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>DDA Creation</CardTitle>
+            <CardTitle>Digital Discovery Assessment</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Create DDA from meeting notes/transcripts</p>
+            <p className="text-gray-600 mb-4">Create DDA from meeting notes/transcripts</p>
+            <div className="flex justify-start items-center gap-14">
+              <div>
+              <Label htmlFor="dda">Digital Discovery Assessment</Label>
+                <div className="relative">
+                  <input
+                    id="dda-creation"
+                    type="file"
+                    className="sr-only" // Hide the input but keep it accessible via the label
+                  />
+                  <label
+                    htmlFor="dda-creation"
+                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    <Upload className="w-5 h-5 mr-2" />
+                    Upload File
+                  </label>
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="digital-discovery-assessment">Digital Discovery Assessment</Label>
+                <div className="relative">
+                  <input
+                    id="digital-assessment"
+                    type="file"
+                    className="sr-only" // Hide the input but keep it accessible via the label
+                  />
+                  <label
+                    htmlFor="digital-assessment"
+                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    <Upload className="w-5 h-5 mr-2" />
+                    Upload File
+                  </label>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </TabsContent>
@@ -33,10 +72,27 @@ export function ProjectTabs({ projectType }) {
       <TabsContent value="prepare" className="mt-6 space-y-6">
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Org Structure Creation</CardTitle>
+            <CardTitle>Org Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Create Org Structure from initial meetings with CTOs/Function Heads</p>
+            <p className="text-gray-600 mb-4">Create Org Structure from initial meetings with CTOs/Function Heads</p>
+            <div>
+              <Label htmlFor="org-structure">Upload org structure</Label>
+              <div className="relative">
+                  <input
+                    id="org-structr"
+                    type="file"
+                    className="sr-only" // Hide the input but keep it accessible via the label
+                  />
+                  <label
+                    htmlFor="org-structr"
+                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    <Upload className="w-5 h-5 mr-2" />
+                    Upload File
+                  </label>
+                </div>
+            </div>
           </CardContent>
         </Card>
         <Card className="fancy-glass fancy-shadow">
@@ -44,7 +100,24 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Detailed Process Requirements</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Capture detailed requirements for each process in scope</p>
+            <p className="text-gray-600 mb-4">Capture detailed requirements for each process in scope</p>
+            <div>
+              <Label htmlFor="process-requirement">Process requirement</Label>
+              <div className="relative">
+                  <input
+                    id="process-requirement"
+                    type="file"
+                    className="sr-only" // Hide the input but keep it accessible via the label
+                  />
+                  <label
+                    htmlFor="process-requirement"
+                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    <Upload className="w-5 h-5 mr-2" />
+                    Upload File
+                  </label>
+                </div>
+            </div>
           </CardContent>
         </Card>
       </TabsContent>
@@ -53,18 +126,35 @@ export function ProjectTabs({ projectType }) {
       <TabsContent value="explore" className="mt-6 space-y-6">
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Key Data Structure Creation</CardTitle>
+            <CardTitle>Key Data Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Based on the understanding of the detailed business process, create key data elements to operationalize the business in the S4 HANA environment</p>
+            <p className="text-gray-600 mb-4">Based on the understanding of the detailed business process, create key data elements to operationalize the business in the S4 HANA environment</p>
+            <div>
+              <Label htmlFor="kds-document">Upload KDS document</Label>
+              <div className="relative">
+                  <input
+                    id="upload-kds"
+                    type="file"
+                    className="sr-only" // Hide the input but keep it accessible via the label
+                  />
+                  <label
+                    htmlFor="upload-kds"
+                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    <Upload className="w-5 h-5 mr-2" />
+                    Upload File
+                  </label>
+                </div>
+            </div>
           </CardContent>
         </Card>
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Requirements Classification</CardTitle>
+            <CardTitle>Solution Definition</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Captured requirements for the business processes (SAP module) will be classified as a standard or a custom requirement. If custom requirement, what all WRICEF components would be required. Also, provides a brief idea of how it can be achieved in S4 HANA.</p>
+            <p className="text-gray-600 mb-4">Captured requirements for the business processes (SAP module) will be classified as a standard or a custom requirement. If custom requirement, what all WRICEF components would be required. Also, provides a brief idea of how it can be achieved in S4 HANA.</p>
             <Link href="/requirement-classification">
               <Button className="mt-4 fancy-button">
                 Classify Requirements
@@ -77,7 +167,7 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>BRD Generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org Structure, Flow, Architecture, etc., captured during the Discover, Prepare and Explore phases</p>
+            <p className="text-gray-600 mb-4">Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org Structure, Flow, Architecture, etc., captured during the Discover, Prepare and Explore phases</p>
             <Link href="/brd-generation">
               <Button className="mt-4 fancy-button">
                 Generate BRD

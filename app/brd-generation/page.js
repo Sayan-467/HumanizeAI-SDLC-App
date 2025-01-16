@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, X } from 'lucide-react';
 import Link from 'next/link';
 import { BRDSection } from '@/components/brd-section';
 import { AddSectionModal } from '@/components/add-section-modal';
@@ -113,6 +113,10 @@ export default function BRDGenerationPage() {
     setIsAddModalOpen(false);
   };
 
+  const removeSection = (id) => {
+    setSections(sections.filter((section) => section.id !== id));
+  };
+
   return (
     <div className="container mx-auto px-28 py-16">
       <Link href="/projects/1">
@@ -124,8 +128,18 @@ export default function BRDGenerationPage() {
       <Accordion type="single" collapsible className="w-full space-y-4">
         {sections.map((section) => (
           <AccordionItem key={section.id} value={section.id} className="border rounded-lg overflow-hidden fancy-glass">
-            <AccordionTrigger className="px-4 py-2 hover:no-underline hover:bg-gray-100">
+            <AccordionTrigger className="flex items-center justify-between px-4 py-2 hover:no-underline hover:bg-gray-100 gap-4">
               <h3 className="text-lg font-semibold">{section.title}</h3>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  removeSection(section.id);
+                }}
+                className="text-red-600 hover:text-red-800 cursor-pointer transition duration-200 ml-auto"
+                aria-label="Remove Section"
+              >
+                <X className="w-5 h-5" />
+              </span>
             </AccordionTrigger>
             <AccordionContent>
               <Card className="m-4 fancy-glass">
@@ -137,9 +151,12 @@ export default function BRDGenerationPage() {
           </AccordionItem>
         ))}
       </Accordion>
-      <Button onClick={() => setIsAddModalOpen(true)} className="mt-6 fancy-button">
-        <PlusCircle className="mr-2 h-4 w-4" /> Add New Section
-      </Button>
+      <div className="flex flex-col w-[30%]">
+        <Button className="mt-6 fancy-button">Generate BRD</Button>
+        <Button onClick={() => setIsAddModalOpen(true)} className="mt-6 fancy-button">
+          <PlusCircle className="mr-2 h-4 w-4" /> Add New Section
+        </Button>
+      </div>
       <AddSectionModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}

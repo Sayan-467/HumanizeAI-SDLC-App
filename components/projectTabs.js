@@ -42,7 +42,7 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Detailed Process Requirements</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-primary/70">Capture detailed requirements for each process in scope</p>
+            <p className="text-primary/70">Capture detailed requirements for each process in scope.</p>
           </CardContent>
         </Card>
       </TabsContent>

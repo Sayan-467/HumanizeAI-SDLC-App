@@ -12,12 +12,12 @@ export function ProjectTabs({ projectType }) {
   return (
     <Tabs defaultValue="discover" className="w-full">
       <TabsList className="grid grid-cols-3 lg:grid-cols-6 h-auto gap-4">
-        <TabsTrigger value="discover" className="fancy-border">Discover</TabsTrigger>
-        <TabsTrigger value="prepare" className="fancy-border">Prepare</TabsTrigger>
-        <TabsTrigger value="explore" className="fancy-border">Explore</TabsTrigger>
-        <TabsTrigger value="realize" className="fancy-border">Realize</TabsTrigger>
-        <TabsTrigger value="deploy" className="fancy-border">Deploy</TabsTrigger>
-        <TabsTrigger value="run" className="fancy-border">Run</TabsTrigger>
+        <TabsTrigger value="discover" className="fancy-border">1. Discover</TabsTrigger>
+        <TabsTrigger value="prepare" className="fancy-border">2. Prepare</TabsTrigger>
+        <TabsTrigger value="explore" className="fancy-border">3. Explore</TabsTrigger>
+        <TabsTrigger value="realize" className="fancy-border">4. Realize</TabsTrigger>
+        <TabsTrigger value="deploy" className="fancy-border">5. Deploy</TabsTrigger>
+        <TabsTrigger value="run" className="fancy-border">6. Run</TabsTrigger>
       </TabsList>
 
       {/* Discover Tab */}
@@ -75,7 +75,7 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Org Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Upload Org Structure created from initial discussions with CTOs/Function Heads.</p>
+            <p className="text-gray-600 mb-4">Upload Org Structure created from initial discussions with Stakeholders.</p>
             <div>
               <Label htmlFor="org-structure">Upload org structure</Label>
               <div className="relative">
@@ -100,9 +100,9 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Detailed Process Requirements</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Capture detailed requirements for each process in scope</p>
+            <p className="text-gray-600 mb-4">Capture detailed requirements for each process in scope.</p>
             <div>
-              <Label htmlFor="process-requirement">Process requirement</Label>
+              <Label htmlFor="process-requirement">Upload Process requirement</Label>
               <div className="relative">
                   <input
                     id="process-requirement"

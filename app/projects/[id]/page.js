@@ -10,7 +10,7 @@ import Link from 'next/link'
 const projectsData = [
   { 
     id: 1, 
-    name: 'Digital Modernization', 
+    name: 'ERP Transformation', 
     status: 'In Progress', 
     description: 'SDLC lifecycle automation, following SAP Activate Methodology, to accelarate GTM.',
     type: 'SAP' 

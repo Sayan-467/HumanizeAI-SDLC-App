@@ -41,7 +41,7 @@ export default function RequirementsClassificationPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="instructions">Instructions for Text Generation</Label>
+              <Label htmlFor="instructions">Want to tune the system generated content? Type your thoughts below.</Label>
               <Textarea 
                 id="instructions" 
                 placeholder="Enter instructions for text generation"

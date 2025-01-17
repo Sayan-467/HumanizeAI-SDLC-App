@@ -22,7 +22,7 @@ export default function ProjectListPage() {
     const [isDialougeOpen, setIsDialougeOpen] = useState(false)
 
     const [projects, setProjects] = useState([
-        { id: 1, name: 'E-commerce Platform', product: 'SAP S4 HANA', project: 'Greenfield', status: 'In Progress' },
+        { id: 1, name: 'Digital Modernization', product: 'SAP S4 HANA', project: 'Greenfield', status: 'In Progress' },
         { id: 2, name: 'CRM System', product: 'Service Now', project: 'Greenfield', status: 'Planning' },
         { id: 3, name: 'Mobile App', product: 'SFDC', project: 'Migration', status: 'Testing' },
     ])

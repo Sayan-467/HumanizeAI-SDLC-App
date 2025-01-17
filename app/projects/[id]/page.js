@@ -10,9 +10,9 @@ import Link from 'next/link'
 const projectsData = [
   { 
     id: 1, 
-    name: 'E-commerce Platform', 
+    name: 'Digital Modernization', 
     status: 'In Progress', 
-    description: 'Building a scalable e-commerce solution with modern technologies.',
+    description: 'SDLC lifecycle automation, following SAP Activate Methodology, to accelarate GTM.',
     type: 'SAP' 
   },
   { 
@@ -70,9 +70,9 @@ export default function ProjectPage() {
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-primary">{project.name}</CardTitle>
             <CardDescription className="text-xl text-primary/70">
-              Status: {project.status}
-              <br />
               Type: {project.type}
+              <br />
+              {project.description}
             </CardDescription>
           </CardHeader>
         </Card>

@@ -13,18 +13,18 @@ const initialSections = [
   {
     id: 'about-client',
     title: 'About the Client',
-    fields: ['Company URL', 'Content', 'Instructions for text generation', 'File upload'],
+    fields: ['Company URL', 'System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
   },
   {
     id: 'objective',
     title: 'Objective of the document',
-    fields: ['Content', 'Instructions for text generation'],
+    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
   },
   {
     id: 'scope',
     title: 'Scope of the document',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -32,7 +32,7 @@ const initialSections = [
     id: 'material',
     title: 'Introduction to Material management',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -40,7 +40,7 @@ const initialSections = [
     id: 'area',
     title: 'Business Areas',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -48,15 +48,15 @@ const initialSections = [
     id: 'org-structure',
     title: 'Organization structure',
     fields: [
-      'Content',
-      'Instructions for text generation'
+      'System Generated Content',
+      'Want to tune the system generated content? Type your thoughts and regenerate.'
     ],
   },
   {
     id: 'kds',
     title: 'Key Document Structure',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -64,7 +64,7 @@ const initialSections = [
     id: 'process',
     title: 'Process Scope',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -72,7 +72,7 @@ const initialSections = [
     id: 'process-flow',
     title: 'Relevant process flows of Material Management',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -80,7 +80,7 @@ const initialSections = [
     id: 'data',
     title: 'Master Data',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -88,7 +88,7 @@ const initialSections = [
     id: 'soln',
     title: 'Solution Data',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },
@@ -96,7 +96,7 @@ const initialSections = [
     id: 'forms',
     title: 'Material Management Reports and Forms List',
     fields: [
-      'Content',
+      'System Generated Content',
       'Description'
     ],
   },

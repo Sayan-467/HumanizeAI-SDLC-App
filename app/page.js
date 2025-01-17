@@ -17,10 +17,10 @@ export default function LandingPage() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-center fancy-gradient bg-clip-text text-transparent mb-6 fancy-text-glow">
-            Welcome to AI-SDLC Manager
+            Welcome to Humanize Platform!
           </h1>
-          <p className="text-xl md:text-2xl text-center text-gray-600 max-w-2xl mb-12">
-            Revolutionize your software development lifecycle with AI-powered project management.
+          <p className="text-xl md:text-2xl text-center text-gray-600 mb-12">
+            Revolutionize your software development lifecycle through Generative AI.
           </p>
           <Button 
             size="lg" 

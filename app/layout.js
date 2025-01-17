@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'AI-Powered SDLC Manager',
+  title: 'Humanize Platform',
   description: 'Manage your software development projects efficiently with AI',
 }
 

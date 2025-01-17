@@ -18,7 +18,7 @@ const initialSections = [
   {
     id: 'objective',
     title: 'Objective of the document',
-    fields: ['Content', 'Instructions for text generation', 'File upload'],
+    fields: ['Content', 'Instructions for text generation'],
   },
   {
     id: 'scope',
@@ -49,9 +49,7 @@ const initialSections = [
     title: 'Organization structure',
     fields: [
       'Content',
-      'Instructions for text generation',
-      'File upload for text generation',
-      'Files to be embedded',
+      'Instructions for text generation'
     ],
   },
   {

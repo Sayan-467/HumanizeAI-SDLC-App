@@ -27,10 +27,10 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Digital Discovery Assessment</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Create DDA from meeting notes/transcripts</p>
+            <p className="text-gray-600 mb-4">Upload DDA report and other notes/transcripts (if any).</p>
             <div className="flex justify-start items-center gap-14">
               <div>
-              <Label htmlFor="dda">Digital Discovery Assessment</Label>
+              <Label htmlFor="dda">Digital Discovery Assessment Report</Label>
                 <div className="relative">
                   <input
                     id="dda-creation"
@@ -47,7 +47,7 @@ export function ProjectTabs({ projectType }) {
                 </div>
               </div>
               <div>
-                <Label htmlFor="digital-discovery-assessment">Digital Discovery Assessment</Label>
+                <Label htmlFor="digital-discovery-assessment">Note / Transcript (if any)</Label>
                 <div className="relative">
                   <input
                     id="digital-assessment"
@@ -75,7 +75,7 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Org Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Create Org Structure from initial meetings with CTOs/Function Heads</p>
+            <p className="text-gray-600 mb-4">Upload Org Structure created from initial discussions with CTOs/Function Heads.</p>
             <div>
               <Label htmlFor="org-structure">Upload org structure</Label>
               <div className="relative">

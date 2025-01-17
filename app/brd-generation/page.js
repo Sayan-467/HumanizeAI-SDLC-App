@@ -30,7 +30,7 @@ const initialSections = [
   },
   {
     id: 'material',
-    title: 'Introduction to Material management',
+    title: 'Introduction to the SAP module',
     fields: [
       'System Generated Content',
       'Description'
@@ -70,7 +70,7 @@ const initialSections = [
   },
   {
     id: 'process-flow',
-    title: 'Relevant process flows of Material Management',
+    title: 'Relevant process flows',
     fields: [
       'System Generated Content',
       'Description'
@@ -94,7 +94,7 @@ const initialSections = [
   },
   {
     id: 'forms',
-    title: 'Material Management Reports and Forms List',
+    title: 'Reports and Forms',
     fields: [
       'System Generated Content',
       'Description'
@@ -150,7 +150,7 @@ export default function BRDGenerationPage() {
         ))}
       </Accordion>
       <div className="flex flex-col w-[30%]">
-        <Button className="mt-6 fancy-button">Generate BRD</Button>
+        <Button className="mt-8 fancy-button">Generate BRD now!</Button>
         <Button onClick={() => setIsAddModalOpen(true)} className="mt-6 fancy-button">
           <PlusCircle className="mr-2 h-4 w-4" /> Add New Section
         </Button>

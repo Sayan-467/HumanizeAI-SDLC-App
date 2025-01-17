@@ -1,45 +1,77 @@
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Upload } from 'lucide-react'
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button"; // Assuming you're using a Button component
+import Image from "next/image";
 
 export function BRDSection({ section }) {
+  const dummyText = "This is some system-generated content for the " + section.title + " section. It provides an overview of the key points and information relevant to this part of the Business Requirements Document."
+
   return (
     <div className="space-y-4">
-      {section.fields.map((field, index) => (
-        <div key={index} className="mb-4">
-          <Label htmlFor={`${section.id}-${field}`} className="mb-2 block text-sm font-medium text-gray-700">{field}</Label>
-          {field.toLowerCase().includes('content') || field.toLowerCase().includes('instructions') ? (
-            <Textarea 
-              id={`${section.id}-${field}`} 
-              placeholder={`Enter ${field}`}
-              className="w-full min-h-[100px] p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      {/* Company URL Section */}
+      {section.id === "about-client" && (
+        <div className="mb-4 relative">
+          <Label
+            htmlFor={`${section.id}-company-url`}
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
+            Company URL
+          </Label>
+          <div className="relative top-0">
+            <Input
+              id={`${section.id}-company-url`}
+              placeholder="Enter company URL"
+              className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-16"
             />
-          ) : field.toLowerCase().includes('file') ? (
-            <div className="relative">
-              <Input 
-                id={`${section.id}-${field}`} 
-                type="file" 
-                className="sr-only"
-              />
-              <label
-                htmlFor={`${section.id}-${field}`}
-                className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-              >
-                <Upload className="w-5 h-5 mr-2" />
-                Upload File
-              </label>
-            </div>
-          ) : (
-            <Input 
-              id={`${section.id}-${field}`} 
-              placeholder={`Enter ${field}`}
-              className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          )}
+            <Button
+              className="absolute inset-y-0 right-0 m-1 px-3 py-1 text-sm font-medium bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-md shadow-md hover:from-green-500 hover:to-blue-600 focus:ring-2 focus:ring-blue-500"
+              onClick={() => alert("Fetching data...")}
+            >
+              <Image src="/wired-outline-35-edit-hover-circle.svg" alt="edit" width={20} height={30} />
+            </Button>
+          </div>
         </div>
-      ))}
-    </div>
-  )
-}
+      )}
 
+      {/* System Generated Content */}
+      <div className="mb-4">
+        <Label
+          htmlFor={`${section.id}-system-content`}
+          className="mb-2 block text-sm font-medium text-gray-700"
+        >
+          System Generated Content
+        </Label>
+        <Textarea
+          id={`${section.id}-system-content`}
+          value={dummyText}
+          className="w-full min-h-[100px] p-2 border rounded-md bg-gray-100 text-gray-600"
+          readOnly
+        />
+      </div>
+
+      {/* User Input Section */}
+      <div className="mb-4 relative">
+        <Label
+          htmlFor={`${section.id}-user-input`}
+          className="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Want to tune the system generated content? Type your thoughts and regenerate
+        </Label>
+        <div className="relative">
+          <Textarea
+            id={`${section.id}-user-input`}
+            placeholder="Enter Want to tune the system generated content? Type your thoughts and regenerate"
+            className="w-full min-h-[100px] p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-16" // Space for button
+          />
+          <Button
+            className="absolute bottom-2 right-2 px-3 py-1 text-sm font-medium bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-md shadow-md hover:from-purple-500 hover:to-pink-600 focus:ring-2 focus:ring-pink-500"
+            onClick={() => alert("Fetching data for textarea...")}
+          >
+            Fetch
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

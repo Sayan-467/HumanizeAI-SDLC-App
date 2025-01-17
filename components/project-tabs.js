@@ -149,7 +149,7 @@ export function ProjectTabs({ projectType }) {
             </div>
           </CardContent>
         </Card>
-        <Card className="fancy-glass fancy-shadow">
+        {/* <Card className="fancy-glass fancy-shadow">
           <CardHeader>
             <CardTitle>Solution Definition</CardTitle>
           </CardHeader>
@@ -161,7 +161,7 @@ export function ProjectTabs({ projectType }) {
               </Button>
             </Link>
           </CardContent>
-        </Card>
+        </Card> */}
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
             <CardTitle>BRD Generation</CardTitle>

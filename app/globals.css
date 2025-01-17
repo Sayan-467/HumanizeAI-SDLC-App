@@ -25,7 +25,7 @@
     --ring: 215 20.2% 65.1%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -59,7 +59,7 @@
 }
 
 .fancy-glass {
-  @apply bg-white/70 backdrop-blur-md border border-gray-200 shadow-lg;
+  @apply bg-white/70 backdrop-blur-md border border-gray-200 shadow-lg rounded-lg;
 }
 
 .fancy-gradient {
@@ -67,15 +67,15 @@
 }
 
 .fancy-text-glow {
-  text-shadow: 0 0 10px rgba(66, 153, 225, 0.5);
+  text-shadow: 0 0 15px rgba(66, 153, 225, 0.7);
 }
 
 .fancy-border {
-  @apply border-2 border-gray-200 hover:border-blue-500 transition-colors duration-300;
+  @apply border-2 border-transparent hover:border-blue-500 transition-all duration-300 ease-in-out;
 }
 
 .fancy-button {
-  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300;
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105;
 }
 
 .accordion-content {
@@ -91,11 +91,11 @@
 }
 
 .fancy-file-upload {
-  @apply relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  @apply relative inline-flex items-center px-6 py-3 border border-gray-300 shadow-lg text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform transition-transform duration-200 ease-in-out;
 }
 
 .fancy-file-upload:hover {
-  @apply transform scale-105 transition-transform duration-200 ease-in-out;
+  @apply transform scale-110 rotate-3 transition-all duration-300 ease-in-out;
 }
 
 .fancy-file-upload input[type="file"] {
@@ -104,5 +104,17 @@
 
 .fancy-file-upload svg {
   @apply mr-2 h-5 w-5 text-gray-400;
+}
+
+.fancy-hover-shadow {
+  @apply hover:shadow-xl hover:bg-gray-100 transition-all duration-200 ease-in-out;
+}
+
+.fancy-rounded-corners {
+  @apply rounded-lg;
+}
+
+.fancy-btn-hover-effect {
+  @apply bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-600 text-white p-3 rounded-full shadow-md hover:bg-gradient-to-l hover:scale-105 transition-all duration-300 ease-in-out;
 }
 

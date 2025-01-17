@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Menu } from 'lucide-react'
+import Image from 'next/image'
 
 const navItems = [
   { name: 'Projects', href: '/projects' },
@@ -57,10 +58,11 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold fancy-gradient bg-clip-text text-transparent">
                 Humanize Platform
               </span>
+              <Image src="/Logo Humanize_Secondary Logo_Horizontal Orientation.png" alt="logo" width={300} height={300} />
             </Link>
           </div>
           {/* <div className="hidden md:flex items-center space-x-4">
@@ -90,7 +92,7 @@ export function Navbar() {
             ))}
           </div> */}
           <div className="flex items-center space-x-4">
-            <Button 
+            <Button
               onClick={handleAuthAction}
               className="fancy-button"
             >

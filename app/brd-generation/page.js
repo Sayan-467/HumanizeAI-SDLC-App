@@ -18,62 +18,62 @@ const initialSections = [
   {
     id: 'about-client',
     title: 'About the Client',
-    fields: ['Company URL', 'System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Company URL', 'Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'objective',
     title: 'Objective of the document',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'scope',
     title: 'Scope of the document',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'material',
     title: 'Introduction to the SAP module',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'area',
     title: 'Business Areas',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'org-structure',
-    title: 'Organization structure',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    title: 'Organization Structure',
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'kds',
     title: 'Key Document Structure',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'process',
     title: 'Process Scope',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'process-flow',
     title: 'Relevant process flows',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'data',
     title: 'Master Data',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'soln',
     title: 'Solution Data',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
   {
     id: 'forms',
     title: 'Reports and Forms',
-    fields: ['System Generated Content', 'Want to tune the system generated content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
   },
 ];
 

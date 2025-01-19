@@ -59,10 +59,8 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold fancy-gradient bg-clip-text text-transparent">
-                Humanize Platform
-              </span>
-              <Image src="/Logo Humanize_Secondary Logo_Horizontal Orientation.png" alt="logo" width={300} height={300} />
+
+              <Image src="/Logo Humanize_Primary Logo_Horizontal Orientation.png" alt="logo" width={250} height={250} />
             </Link>
           </div>
           {/* <div className="hidden md:flex items-center space-x-4">

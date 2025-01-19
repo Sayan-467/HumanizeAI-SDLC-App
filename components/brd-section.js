@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"; // Assuming you're using a Butt
 import Image from "next/image";
 
 export function BRDSection({ section }) {
-  const dummyText = "This is some system-generated content for the " + section.title + " section. It provides an overview of the key points and information relevant to this part of the Business Requirements Document."
+  const dummyText = "This is the current content for the " + section.title + " section. It provides an overview of the key points and information relevant to this part of the Business Requirements Document."
 
   return (
     <div className="space-y-4">
@@ -40,7 +40,7 @@ export function BRDSection({ section }) {
           htmlFor={`${section.id}-system-content`}
           className="mb-2 block text-sm font-medium text-gray-700"
         >
-          System Generated Content
+          Current Content
         </Label>
         <Textarea
           id={`${section.id}-system-content`}
@@ -56,19 +56,19 @@ export function BRDSection({ section }) {
           htmlFor={`${section.id}-user-input`}
           className="mb-2 block text-sm font-medium text-gray-700"
         >
-          Want to tune the system generated content? Type your thoughts and regenerate
+          Want to tune the current content? Type your thoughts and regenerate.
         </Label>
         <div className="relative">
           <Textarea
             id={`${section.id}-user-input`}
-            placeholder="Enter Want to tune the system generated content? Type your thoughts and regenerate"
+            placeholder="Type your thoughts and regenerate."
             className="w-full min-h-[100px] p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-16" // Space for button
           />
           <Button
             className="absolute bottom-2 right-2 px-3 py-1 text-sm font-medium bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-md shadow-md hover:from-purple-500 hover:to-pink-600 focus:ring-2 focus:ring-pink-500"
             onClick={() => alert("Fetching data for textarea...")}
           >
-            Fetch
+            Regenerate
           </Button>
         </div>
       </div>

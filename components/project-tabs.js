@@ -27,7 +27,11 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Digital Discovery Assessment</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Upload DDA report and other notes/transcripts (if any).</p>
+            <p className="text-gray-600 mb-4">
+            The Digital Discovery Assessment (DDA) is used in the sales cycle to assess a customer's requirements 
+            and match them with the best SAP S/4HANA Cloud solution to fit their needs. <br></br>
+            Upload your DDA report and other notes/transcripts (if any).
+            </p>
             <div className="flex justify-start items-center gap-14">
               <div>
               <Label htmlFor="dda">Digital Discovery Assessment Report</Label>
@@ -75,7 +79,10 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Org Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Upload Org Structure created from initial discussions with Stakeholders.</p>
+            <p className="text-gray-600 mb-4">
+              Org Structure is the document detailing overall business operations which includes Chart Of Accounts, Number of Organizations, Plants, Assembly Lines, Sales Orgs, Distribution Centers, etc.
+              <br></br>
+              Upload Org Structure created from initial discussions with Stakeholders.</p>
             <div>
               <Label htmlFor="org-structure">Upload org structure</Label>
               <div className="relative">
@@ -129,7 +136,9 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Key Data Structure</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Based on the understanding of the detailed business process, create key data elements to operationalize the business in the S4 HANA environment</p>
+            <p className="text-gray-600 mb-4">
+            A Key Data Structure (KDS) document is a blueprint used to configure SAP modules.
+            Based on the understanding of the detailed business process, create key data elements to operationalize the business in the S4 HANA environment.</p>
             <div>
               <Label htmlFor="kds-document">Upload KDS document</Label>
               <div className="relative">

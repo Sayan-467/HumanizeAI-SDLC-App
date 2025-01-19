@@ -70,8 +70,7 @@ export default function ProjectPage() {
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-primary">{project.name}</CardTitle>
             <CardDescription className="text-xl text-primary/70">
-              Type: {project.type}
-              <br />
+
               {project.description}
             </CardDescription>
           </CardHeader>

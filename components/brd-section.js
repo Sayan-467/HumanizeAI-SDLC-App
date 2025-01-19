@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"; // Assuming you're using a Butt
 import Image from "next/image";
 
 export function BRDSection({ section }) {
-  const dummyText = "This is the current content for the " + section.title + " section. It provides an overview of the key points and information relevant to this part of the Business Requirements Document."
+  const dummyText = "This is the current content for the " + section.title + " section."
 
   return (
     <div className="space-y-4">

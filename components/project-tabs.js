@@ -1,173 +1,151 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
+import { useState } from "react"
+import Link from "next/link"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Upload } from 'lucide-react'
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { PlusCircle } from "lucide-react"
+import { AddDocumentModal } from "./add-document-modal"
+import { BRDGeneration } from "./brd-generation"
+import { TestPlanGeneration } from "./test-plan-generation"
 
 export function ProjectTabs({ projectType }) {
+  const [documents, setDocuments] = useState({
+    discover: [],
+    prepare: [],
+    explore: [],
+  })
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [currentTab, setCurrentTab] = useState("discover")
+
+  const addDocument = (newDocument) => {
+    setDocuments((prevDocuments) => ({
+      ...prevDocuments,
+      [newDocument.tabName]: [...prevDocuments[newDocument.tabName], newDocument],
+    }))
+    setIsAddModalOpen(false)
+  }
+
+  const openAddModal = (tab) => {
+    setCurrentTab(tab)
+    setIsAddModalOpen(true)
+  }
+
   return (
     <Tabs defaultValue="discover" className="w-full">
       <TabsList className="grid grid-cols-3 lg:grid-cols-6 h-auto gap-4">
-        <TabsTrigger value="discover" className="fancy-border">1. Discover</TabsTrigger>
-        <TabsTrigger value="prepare" className="fancy-border">2. Prepare</TabsTrigger>
-        <TabsTrigger value="explore" className="fancy-border">3. Explore</TabsTrigger>
-        <TabsTrigger value="realize" className="fancy-border">4. Realize</TabsTrigger>
-        <TabsTrigger value="deploy" className="fancy-border">5. Deploy</TabsTrigger>
-        <TabsTrigger value="run" className="fancy-border">6. Run</TabsTrigger>
+        <TabsTrigger value="discover" className="fancy-border">
+          Discover
+        </TabsTrigger>
+        <TabsTrigger value="prepare" className="fancy-border">
+          Prepare
+        </TabsTrigger>
+        <TabsTrigger value="explore" className="fancy-border">
+          Explore
+        </TabsTrigger>
+        <TabsTrigger value="realize" className="fancy-border">
+          Realize
+        </TabsTrigger>
+        <TabsTrigger value="deploy" className="fancy-border">
+          Deploy
+        </TabsTrigger>
+        <TabsTrigger value="run" className="fancy-border">
+          Run
+        </TabsTrigger>
       </TabsList>
 
       {/* Discover Tab */}
       <TabsContent value="discover" className="mt-6">
         <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Digital Discovery Assessment</CardTitle>
+          <CardHeader className="flex justify-between items-center">
+            <CardTitle>Documents</CardTitle>
+            <Button onClick={() => openAddModal("discover")} className="fancy-button">
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
+            </Button>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">
-            The Digital Discovery Assessment (DDA) is used in the sales cycle to assess a customer's requirements 
-            and match them with the best SAP S/4HANA Cloud solution to fit their needs. <br></br>
-            Upload your DDA report and other notes/transcripts (if any).
-            </p>
-            <div className="flex justify-start items-center gap-14">
-              <div>
-              <Label htmlFor="dda">Digital Discovery Assessment Report</Label>
-                <div className="relative">
-                  <input
-                    id="dda-creation"
-                    type="file"
-                    className="sr-only" // Hide the input but keep it accessible via the label
-                  />
-                  <label
-                    htmlFor="dda-creation"
-                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload File
-                  </label>
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="digital-discovery-assessment">Note / Transcript (if any)</Label>
-                <div className="relative">
-                  <input
-                    id="digital-assessment"
-                    type="file"
-                    className="sr-only" // Hide the input but keep it accessible via the label
-                  />
-                  <label
-                    htmlFor="digital-assessment"
-                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload File
-                  </label>
-                </div>
-              </div>
-            </div>
+            {documents.discover.length === 0 ? (
+              <p className="text-gray-600">No documents added yet.</p>
+            ) : (
+              <ul className="space-y-2">
+                {documents.discover.map((doc) => (
+                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
+                    <h3 className="font-semibold">{doc.name}</h3>
+                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>
         </Card>
       </TabsContent>
 
       {/* Prepare Tab */}
-      <TabsContent value="prepare" className="mt-6 space-y-6">
+      <TabsContent value="prepare" className="mt-6">
         <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Org Structure</CardTitle>
+          <CardHeader className="flex justify-between items-center">
+            <CardTitle>Documents</CardTitle>
+            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
+            </Button>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">
-              Org Structure is the document detailing overall business operations which includes Chart Of Accounts, Number of Organizations, Plants, Assembly Lines, Sales Orgs, Distribution Centers, etc.
-              <br></br>
-              Upload Org Structure created from initial discussions with Stakeholders.</p>
-            <div>
-              <Label htmlFor="org-structure">Upload org structure</Label>
-              <div className="relative">
-                  <input
-                    id="org-structr"
-                    type="file"
-                    className="sr-only" // Hide the input but keep it accessible via the label
-                  />
-                  <label
-                    htmlFor="org-structr"
-                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload File
-                  </label>
-                </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Detailed Process Requirements</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600 mb-4">Capture detailed requirements for each process in scope.</p>
-            <div>
-              <Label htmlFor="process-requirement">Upload Process requirement</Label>
-              <div className="relative">
-                  <input
-                    id="process-requirement"
-                    type="file"
-                    className="sr-only" // Hide the input but keep it accessible via the label
-                  />
-                  <label
-                    htmlFor="process-requirement"
-                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload File
-                  </label>
-                </div>
-            </div>
+            {documents.prepare.length === 0 ? (
+              <p className="text-gray-600">No documents added yet.</p>
+            ) : (
+              <ul className="space-y-2">
+                {documents.prepare.map((doc) => (
+                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
+                    <h3 className="font-semibold">{doc.name}</h3>
+                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>
         </Card>
       </TabsContent>
 
       {/* Explore Tab */}
       <TabsContent value="explore" className="mt-6 space-y-6">
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Key Data Structure</CardTitle>
+      <Card className="fancy-glass fancy-shadow">
+          <CardHeader className="flex justify-between items-center">
+            <CardTitle>Requirement Documents</CardTitle>
+            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
+            </Button>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">
-            A Key Data Structure (KDS) document is a blueprint used to configure SAP modules.
-            Based on the understanding of the detailed business process, create key data elements to operationalize the business in the S4 HANA environment.</p>
-            <div>
-              <Label htmlFor="kds-document">Upload KDS document</Label>
-              <div className="relative">
-                  <input
-                    id="upload-kds"
-                    type="file"
-                    className="sr-only" // Hide the input but keep it accessible via the label
-                  />
-                  <label
-                    htmlFor="upload-kds"
-                    className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-105"
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload File
-                  </label>
-                </div>
-            </div>
+            {documents.prepare.length === 0 ? (
+              <p className="text-gray-600">No documents added yet.</p>
+            ) : (
+              <ul className="space-y-2">
+                {documents.prepare.map((doc) => (
+                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
+                    <h3 className="font-semibold">{doc.name}</h3>
+                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>
         </Card>
         {/* <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Solution Definition</CardTitle>
+            <CardTitle>Requirements Classification</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Captured requirements for the business processes (SAP module) will be classified as a standard or a custom requirement. If custom requirement, what all WRICEF components would be required. Also, provides a brief idea of how it can be achieved in S4 HANA.</p>
-            <Link href="/requirement-classification">
-              <Button className="mt-4 fancy-button">
-                Classify Requirements
-              </Button>
+            <p className="text-gray-600">
+              Captured requirements for the business processes (SAP module) will be classified as a standard or a custom
+              requirement. If custom requirement, what all WRICEF components would be required. Also, provides a brief
+              idea of how it can be achieved in S4 HANA.
+            </p>
+            <Link href="/requirements-classification">
+              <Button className="mt-4 fancy-button">Classify Requirements</Button>
             </Link>
           </CardContent>
         </Card> */}
@@ -176,12 +154,25 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>BRD Generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org Structure, Flow, Architecture, etc., captured during the Discover, Prepare and Explore phases</p>
+            <p className="text-gray-600">
+              Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org
+              Structure, Flow, Architecture, etc., captured during the Discover, Prepare and Explore phases
+            </p>
             <Link href="/brd-generation">
-              <Button className="mt-4 fancy-button">
-                Generate BRD
-              </Button>
+              <Button className="mt-4 fancy-button">Generate BRD</Button>
             </Link>
+            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
+          </CardContent>
+        </Card>
+        <Card className="fancy-glass fancy-shadow">
+          <CardHeader>
+            <CardTitle>Test Plan Generation</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600">
+            There will be a pre-defined section to add test cases. This section will be defined later.
+            </p>
+            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>
         </Card>
       </TabsContent>
@@ -193,7 +184,9 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Standard Configuration</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Configure all the processes selected during the DDA phase and in the detailed requirements phase</p>
+            <p className="text-gray-600">
+              Configure all the processes selected during the DDA phase and in the detailed requirements phase
+            </p>
           </CardContent>
         </Card>
         <Card className="fancy-glass fancy-shadow">
@@ -201,7 +194,9 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Custom Workflow (WRICEF) code generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Generate code for a custom workflow requirement that is not present in SAP by default</p>
+            <p className="text-gray-600">
+              Generate code for a custom workflow requirement that is not present in SAP by default
+            </p>
           </CardContent>
         </Card>
         <Card className="fancy-glass fancy-shadow">
@@ -209,11 +204,11 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Custom Report (WRICEF) code generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">Generate code for a custom report that is not present in SAP by default</p>
+            <p className="text-gray-600 mb-4">
+              Generate code for a custom report that is not present in SAP by default
+            </p>
             <Link href="/custom-report-generation">
-              <Button className="fancy-button">
-                Generate Custom Report
-              </Button>
+              <Button className="fancy-button">Generate Custom Report</Button>
             </Link>
           </CardContent>
         </Card>
@@ -238,7 +233,9 @@ export function ProjectTabs({ projectType }) {
             <CardTitle>Custom Enhancement (WRICEF) code generation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Generate code for a custom SAP enhancement that is not present in SAP by default</p>
+            <p className="text-gray-600">
+              Generate code for a custom SAP enhancement that is not present in SAP by default
+            </p>
           </CardContent>
         </Card>
         <Card className="fancy-glass fancy-shadow">
@@ -267,6 +264,13 @@ export function ProjectTabs({ projectType }) {
       <TabsContent value="run" className="mt-6">
         {/* Intentionally left empty as per requirements */}
       </TabsContent>
+
+      <AddDocumentModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onAdd={addDocument}
+        tabName={currentTab}
+      />
     </Tabs>
   )
 }

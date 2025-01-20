@@ -18,62 +18,62 @@ const initialSections = [
   {
     id: 'about-client',
     title: 'About the Client',
-    fields: ['Company URL', 'Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Company URL', 'Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'objective',
     title: 'Objective of the document',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'scope',
     title: 'Scope of the document',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'material',
     title: 'Introduction to the SAP module',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'area',
     title: 'Business Areas',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'org-structure',
     title: 'Organization Structure',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'kds',
     title: 'Key Document Structure',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'process',
     title: 'Process Scope',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'process-flow',
     title: 'Relevant process flows',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'data',
     title: 'Master Data',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'soln',
     title: 'Solution Data',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
   {
     id: 'forms',
     title: 'Reports and Forms',
-    fields: ['Current Content', 'Want to tune the Current Content? Type your thoughts and regenerate.'],
+    fields: ['Current Content', 'Want to regenerate the content? Type your thoughts below.'],
   },
 ];
 

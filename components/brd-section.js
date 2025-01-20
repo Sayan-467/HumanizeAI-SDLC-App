@@ -56,7 +56,7 @@ export function BRDSection({ section }) {
           htmlFor={`${section.id}-user-input`}
           className="mb-2 block text-sm font-medium text-gray-700"
         >
-          Want to tune the current content? Type your thoughts and regenerate.
+          Want to regenerate the content? Type your thoughts below.
         </Label>
         <div className="relative">
           <Textarea

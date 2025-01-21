@@ -33,7 +33,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
       <DialogContent className="sm:max-w-[425px] fancy-glass fancy-border bg-gradient-to-br from-white to-blue-50">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-            Add New Document
+            Document
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">

@@ -10,11 +10,16 @@ import { AddDocumentModal } from "./add-document-modal"
 import { BRDGeneration } from "./brd-generation"
 import { TestPlanGeneration } from "./test-plan-generation"
 
-export function ProjectTabs({ projectType }) {
+const documentTags = ["DDA", "PDA", "KDS", "Detailed_Process_Requirements", "Org_Structure"]
+
+export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStatuses, onPhaseComplete }) {
   const [documents, setDocuments] = useState({
     discover: [],
     prepare: [],
     explore: [],
+    realize: [],
+    deploy: [],
+    run: [],
   })
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("discover")
@@ -31,6 +36,31 @@ export function ProjectTabs({ projectType }) {
     setCurrentTab(tab)
     setIsAddModalOpen(true)
   }
+
+  const handleDownload = (document) => {
+    // Implement download functionality
+    console.log("Downloading:", document)
+  }
+
+  const handleReupload = (document) => {
+    // Implement re-upload functionality
+    console.log("Re-uploading:", document)
+  }
+
+  const renderPhaseInfo = (phase) => (
+    <div className="mb-4 flex justify-between items-center">
+      <div>
+        <p>End Date: {phaseEndDates[phase]}</p>
+        <p>Current Date: {currentDate}</p>
+        <p>Status: {phaseStatuses[phase]}</p>
+      </div>
+      {phaseStatuses[phase] !== "Completed" && (
+        <Button onClick={() => onPhaseComplete(phase)} className="fancy-button">
+          Mark as Completed
+        </Button>
+      )}
+    </div>
+  )
 
   return (
     <Tabs defaultValue="discover" className="w-full">
@@ -60,7 +90,7 @@ export function ProjectTabs({ projectType }) {
         <Card className="fancy-glass fancy-shadow">
           <CardHeader className="flex justify-between items-center">
             <CardTitle>Documents</CardTitle>
-            <Button onClick={() => openAddModal("discover")} className="fancy-button">
+            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
               <PlusCircle className="mr-2 h-4 w-4" /> Add Document
             </Button>
           </CardHeader>
@@ -111,7 +141,7 @@ export function ProjectTabs({ projectType }) {
 
       {/* Explore Tab */}
       <TabsContent value="explore" className="mt-6 space-y-6">
-      <Card className="fancy-glass fancy-shadow">
+        <Card className="fancy-glass fancy-shadow">
           <CardHeader className="flex justify-between items-center">
             <CardTitle>Requirement Documents</CardTitle>
             <Button onClick={() => openAddModal("prepare")} className="fancy-button">
@@ -170,7 +200,7 @@ export function ProjectTabs({ projectType }) {
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-            There will be a pre-defined section to add test cases. This section will be defined later.
+              There will be a pre-defined section to add test cases. This section will be defined later.
             </p>
             <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>

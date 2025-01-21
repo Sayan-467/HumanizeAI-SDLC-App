@@ -41,7 +41,7 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
       <DialogContent className="sm:max-w-[600px] fancy-glass fancy-border">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-            Add New Section
+            Section
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
@@ -67,7 +67,7 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               className="fancy-border"
             />
           </div>
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="file-reference">File Reference</Label>
             <Input
               id="file-reference"
@@ -76,7 +76,7 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
               className="fancy-border"
             />
-          </div>
+          </div> */}
           <div className="space-y-2">
             <Label htmlFor="generated-content">Generated Content</Label>
             <Textarea

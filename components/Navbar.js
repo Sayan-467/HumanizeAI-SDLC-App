@@ -1,55 +1,41 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Menu } from 'lucide-react'
-import Image from 'next/image'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Menu, User } from "lucide-react"
 
 const navItems = [
-  { name: 'Projects', href: '/projects' },
-  { name: 'Tasks', href: '/tasks' },
-  { name: 'Team', href: '/team' },
+  { name: "Projects", href: "/projects" },
+  { name: "Tasks", href: "/tasks" },
+  { name: "Team", href: "/team" },
 ]
 
 export function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [hoveredPath, setHoveredPath] = useState(null)
   const pathname = usePathname()
   const router = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState({ name: "John Doe", role: "Project Manager" })
 
-  // Set login status on mount and storage change
   useEffect(() => {
-    const checkLoginStatus = () => {
-      const token = localStorage.getItem('authToken')
-      setIsLoggedIn(!!token)
-    }
-
-    // Check login status on mount
-    checkLoginStatus()
-
-    // Add listener for localStorage changes
-    window.addEventListener('storage', checkLoginStatus)
-    return () => window.removeEventListener('storage', checkLoginStatus)
+    // Check if user is logged in
+    const token = localStorage.getItem("authToken")
+    setIsLoggedIn(!!token)
   }, [])
 
   const handleAuthAction = () => {
     if (isLoggedIn) {
-      // Logout action
-      localStorage.removeItem('authToken')
-      setIsLoggedIn(true)
-      router.push('/') // Redirect to homepage after logout
+      // Logout
+      localStorage.removeItem("authToken")
+      setIsLoggedIn(false)
+      router.push("/")
     } else {
-      // Redirect to login page
-      router.push('/login')
-      // setIsLoggedIn(false)
+      // Login
+      router.push("/login")
     }
   }
 
@@ -58,43 +44,54 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-
-              <Image src="/Logo Humanize_Primary Logo_Horizontal Orientation.png" alt="logo" width={250} height={250} />
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="text-2xl font-bold fancy-gradient bg-clip-text text-transparent">AI-SDLC Manager</span>
             </Link>
           </div>
-          {/* <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-4">
+            {/* {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-3 py-2 text-sm font-medium ${
-                  pathname === item.href
-                    ? 'text-blue-500'
-                    : 'text-gray-700 hover:text-blue-500'
-                }`}
+                className="relative px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-blue-500"
+                onMouseEnter={() => setHoveredPath(item.href)}
+                onMouseLeave={() => setHoveredPath(null)}
               >
                 <span>{item.name}</span>
-                {(pathname === item.href) && (
+                {pathname === item.href && (
                   <motion.div
                     className="absolute bottom-0 left-0 h-0.5 w-full bg-blue-500"
                     layoutId="navbar"
                     transition={{
-                      type: 'spring',
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                {hoveredPath === item.href && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-blue-500"
+                    layoutId="navbar"
+                    transition={{
+                      type: "spring",
                       stiffness: 350,
                       damping: 30,
                     }}
                   />
                 )}
               </Link>
-            ))}
-          </div> */}
+            ))} */}
+          </div>
           <div className="flex items-center space-x-4">
-            <Button
-              onClick={handleAuthAction}
-              className="fancy-button"
-            >
-              {isLoggedIn ? 'Logout' : 'Login'}
+            <div className="flex items-center mr-4">
+              <User className="h-5 w-5 text-gray-500 mr-2" />
+              <span className="text-sm text-gray-700">
+                {user.name} - {user.role}
+              </span>
+            </div>
+            <Button onClick={handleAuthAction} className="fancy-button">
+              {isLoggedIn ? "Logout" : "Login"}
             </Button>
             <div className="md:hidden">
               <DropdownMenu>
@@ -107,7 +104,9 @@ export function Navbar() {
                 <DropdownMenuContent align="end" className="fancy-glass">
                   {navItems.map((item) => (
                     <DropdownMenuItem key={item.href} asChild>
-                      <Link href={item.href} className="text-gray-700 hover:text-blue-500">{item.name}</Link>
+                      <Link href={item.href} className="text-gray-700 hover:text-blue-500">
+                        {item.name}
+                      </Link>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
@@ -119,3 +118,4 @@ export function Navbar() {
     </nav>
   )
 }
+

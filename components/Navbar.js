@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -43,9 +44,9 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 fancy-glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold fancy-gradient bg-clip-text text-transparent">AI-SDLC Manager</span>
+        <div className="flex items-center">
+            <Link href="/" className="flex items-center">
+              <Image src="/Logo Humanize_Primary Logo_Horizontal Orientation.png" alt="logo" width={250} height={250} />
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">

@@ -52,7 +52,6 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter section title"
-              required
               className="fancy-border"
             />
           </div>
@@ -66,6 +65,11 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               required
               className="fancy-border"
             />
+          </div>
+          <div>
+            <Button type="button" onClick={generateContent} className="fancy-button">
+              Generate
+            </Button>
           </div>
           {/* <div className="space-y-2">
             <Label htmlFor="file-reference">File Reference</Label>
@@ -84,14 +88,11 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               value={generatedContent}
               onChange={(e) => setGeneratedContent(e.target.value)}
               placeholder="Generated content will appear here"
-              rows={6}
+              rows={4}
               className="fancy-border"
             />
           </div>
           <div className="flex space-x-2">
-            <Button type="button" onClick={generateContent} className="fancy-button">
-              Generate
-            </Button>
             <Button type="submit" className="fancy-button">
               Save
             </Button>

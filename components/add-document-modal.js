@@ -51,6 +51,22 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="productType" className="text-right">
+              Tag/Label (Unique)
+            </Label>
+            <select
+              id="productType"
+              name="productType"
+              className="col-span-3 bg-background/50 text-primary border border-input rounded-md p-2 px-8 mx-4"
+            >
+              <option value="DDA">DDA</option>
+              <option value="PDA">PDA</option>
+              <option value="PDA">PDA</option>
+              <option value="Detailed Process Requirement">Detailed Process Requirement</option>
+              <option value="Organisational Structure">Organisational Structure</option>
+            </select>
+          </div>
+          {/* <div className="space-y-2">
             <Label htmlFor="tag" className="text-gray-700">
               Tag/Label (Unique)
             </Label>
@@ -62,7 +78,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
               required
               className="fancy-border transition-all duration-200 hover:shadow-md"
             />
-          </div>
+          </div> */}
           <div className="space-y-2">
             <Label htmlFor="inputFile" className="text-gray-700">
               Input File (xlsx, word, pdf)

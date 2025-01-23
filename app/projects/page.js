@@ -39,19 +39,26 @@ export default function ProjectListPage() {
     }
   }
 
-  const addProject = async (formData) => {
-    const name = formData.get("name")
-    const description = formData.get("description")
-    const productType = formData.get("productType")
-    const industryClassification = formData.get("industryClassification")
-    const startDate = formData.get("startDate")
-    const discoverEndDate = formData.get("discoverEndDate")
-    const prepareEndDate = formData.get("prepareEndDate")
-    const exploreEndDate = formData.get("exploreEndDate")
-    const realizeEndDate = formData.get("realizeEndDate")
-    const deployEndDate = formData.get("deployEndDate")
+  const SubmitButton = () => {
+    const { pending } = useFormStatus()
+    return (
+      <Button type="submit" className="bg-accent hover:bg-accent/80 text-accent-foreground" disabled={pending}>
+        {pending ? 'Adding...' : 'Add Project'}
+      </Button>
+    )
+  }
 
-    // In a real application, you would send this data to your backend
+  const addProject = async (event) => {
+    event.preventDefault(); // Prevent page refresh
+
+    const formData = new FormData(event.target);
+    const name = formData.get("name");
+    const description = formData.get("description");
+    const productType = formData.get("productType");
+    const industryClassification = formData.get("industryClassification");
+    const startDate = formData.get("startDate");
+    const discoverEndDate = formData.get("discoverEndDate");
+
     const newProject = {
       id: projects.length + 1,
       name,
@@ -60,19 +67,20 @@ export default function ProjectListPage() {
       industryClassification,
       startDate,
       discoverEndDate,
-      prepareEndDate,
-      exploreEndDate,
-      realizeEndDate,
-      deployEndDate,
       status: "Planning",
-    }
+    };
 
-    setProjects([...projects, newProject])
-    setIsDialogOpen(false)
-  }
+    setProjects([...projects, newProject]); // Update project state
+    setIsDialogOpen(false); // Close the dialog
+  };
 
   return (
     <div className="space-y-6 px-16 py-12">
+      <Link href="/">
+        <Button variant="outline" className="mb-4 fancy-border">
+          ← Back to Home Page
+        </Button>
+      </Link>
       <h1 className="text-3xl font-bold text-primary">Projects</h1>
       <div className="flex justify-between items-center space-x-2">
         <Input
@@ -86,7 +94,7 @@ export default function ProjectListPage() {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px] bg-secondary text-primary">
             <DialogHeader>
-              <DialogTitle>Add New Project</DialogTitle>
+              <DialogTitle>Project</DialogTitle>
               <DialogDescription>Create a new project for your SDLC workflow.</DialogDescription>
             </DialogHeader>
             <form onSubmit={addProject}>
@@ -161,7 +169,7 @@ export default function ProjectListPage() {
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="discoverEndDate" className="text-right">
-                    Discover End Date
+                    Project End Date
                   </Label>
                   <Input
                     id="discoverEndDate"
@@ -170,7 +178,7 @@ export default function ProjectListPage() {
                     className="col-span-3 bg-background/50 text-primary"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                {/* <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="prepareEndDate" className="text-right">
                     Prepare End Date
                   </Label>
@@ -213,33 +221,36 @@ export default function ProjectListPage() {
                     type="date"
                     className="col-span-3 bg-background/50 text-primary"
                   />
-                </div>
+                </div> */}
               </div>
               <DialogFooter>
-                <AddUserButton />
+                <SubmitButton />
               </DialogFooter>
             </form>
           </DialogContent>
         </Dialog>
-        <Link href="/add-user">
+        {/* <Link href="/add-user">
           <Button className="bg-accent hover:bg-accent/80 text-accent-foreground ml-2">Add User</Button>
-        </Link>
+        </Link> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <Card key={project.id} className={`backdrop-blur-sm border ${getStatusColor(project.status)}`}>
+        {projects.map(project => (
+          <Card key={project.id} className={`bg-secondary/50 backdrop-blur-sm border-accent/20`}>
             <CardHeader>
-              <CardTitle className="text-primary">{project.name}</CardTitle>
-              <CardDescription className="text-primary/70">Status: {project.status}</CardDescription>
+              <CardTitle className="text-primary font-semibold text-xl">{project.name}</CardTitle>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Product Type: </span> <span className='text-md'>{project.productType}</span></CardDescription>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Project Type: </span> <span className='text-md'>{project.projectType}</span></CardDescription>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Industry Classification: </span> <span className='text-md'>{project.industryClassification}</span></CardDescription>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Start Date: </span> <span className='text-md'>{project.startDate}</span></CardDescription>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Project End Date: </span> <span className='text-md'>{project.discoverEndDate}</span></CardDescription>
+              <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Status: </span> <span className={`px-2 py-1 text-md ${getStatusColor(project.status)}`}>{project.status}</span></CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex justify-between items-center">
               <Link href={`/projects/${project.id}`}>
-                <Button
-                  variant="outline"
-                  className="w-full text-primary border-accent hover:bg-accent hover:text-accent-foreground"
-                >
-                  View Details
-                </Button>
+                <Button variant="outline" className="w-full text-primary border-accent hover:bg-accent hover:text-accent-foreground">View Project</Button>
+              </Link>
+              <Link href={`/add-user`}>
+                <AddUserButton />
               </Link>
             </CardContent>
           </Card>

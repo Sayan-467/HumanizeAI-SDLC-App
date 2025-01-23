@@ -1,18 +1,41 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { PlusCircle } from "lucide-react"
-import { AddDocumentModal } from "./add-document-modal"
-import { BRDGeneration } from "./brd-generation"
-import { TestPlanGeneration } from "./test-plan-generation"
+import { useState } from "react";
+import Link from "next/link";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { PlusCircle } from "lucide-react";
+import { AddDocumentModal } from "./add-document-modal";
 
-const documentTags = ["DDA", "PDA", "KDS", "Detailed_Process_Requirements", "Org_Structure"]
+const documentTags = ["DDA", "PDA", "KDS", "Detailed_Process_Requirements", "Org_Structure"];
 
-export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStatuses, onPhaseComplete }) {
+const defaultPhaseStatuses = {
+  discover: "Not Started",
+  prepare: "Not Started",
+  explore: "Not Started",
+  realize: "Not Started",
+  deploy: "Not Started",
+  run: "Not Started",
+};
+
+const defaultPhaseEndDates = {
+  discover: "2025-01-30",
+  prepare: "2025-02-15",
+  explore: "2025-03-01",
+  realize: "2025-03-15",
+  deploy: "2025-04-01",
+  run: "2025-04-15",
+};
+
+export function ProjectTabs({
+  phaseEndDates = defaultPhaseEndDates,
+  currentDate = new Date().toISOString().split("T")[0],
+  phaseStatuses = defaultPhaseStatuses,
+  onPhaseComplete = (phase) => {
+    console.log(`${phase} marked as completed.`);
+  },
+}) {
   const [documents, setDocuments] = useState({
     discover: [],
     prepare: [],
@@ -20,47 +43,65 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
     realize: [],
     deploy: [],
     run: [],
-  })
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("discover")
+  });
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [currentTab, setCurrentTab] = useState("discover");
 
   const addDocument = (newDocument) => {
     setDocuments((prevDocuments) => ({
       ...prevDocuments,
-      [newDocument.tabName]: [...prevDocuments[newDocument.tabName], newDocument],
-    }))
-    setIsAddModalOpen(false)
-  }
+      [newDocument.tabName]: [...prevDocuments[newDocument.tabName], { ...newDocument, status: "Not Started" }],
+    }));
+    setIsAddModalOpen(false);
+  };
 
   const openAddModal = (tab) => {
-    setCurrentTab(tab)
-    setIsAddModalOpen(true)
-  }
+    setCurrentTab(tab);
+    setIsAddModalOpen(true);
+  };
 
-  const handleDownload = (document) => {
-    // Implement download functionality
-    console.log("Downloading:", document)
-  }
-
-  const handleReupload = (document) => {
-    // Implement re-upload functionality
-    console.log("Re-uploading:", document)
-  }
-
-  const renderPhaseInfo = (phase) => (
-    <div className="mb-4 flex justify-between items-center">
-      <div>
-        <p>End Date: {phaseEndDates[phase]}</p>
-        <p>Current Date: {currentDate}</p>
-        <p>Status: {phaseStatuses[phase]}</p>
-      </div>
-      {phaseStatuses[phase] !== "Completed" && (
-        <Button onClick={() => onPhaseComplete(phase)} className="fancy-button">
-          Mark as Completed
-        </Button>
-      )}
-    </div>
-  )
+  const renderDocumentSection = (tab) => (
+    <Card className="fancy-glass fancy-shadow">
+      <CardHeader className="flex justify-between items-center">
+        <CardTitle>Documents</CardTitle>
+        {phaseStatuses[tab] !== "Completed" && (
+          <Button onClick={() => openAddModal(tab)} className="fancy-button">
+            <PlusCircle className="mr-2 h-4 w-4" /> Add Document
+          </Button>
+        )}
+      </CardHeader>
+      <CardContent>
+        {documents[tab].length === 0 ? (
+          <p className="text-gray-600">No documents added yet.</p>
+        ) : (
+          <ul className="space-y-2">
+            {documents[tab].map((doc, index) => (
+              <li key={index} className="p-4 bg-white rounded-md shadow">
+                <h3 className="font-semibold">{doc.name}</h3>
+                <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
+                <p className="text-sm text-gray-600">End Date: {phaseEndDates[tab]}</p>
+                <p className="text-sm text-gray-600">Today: {currentDate}</p>
+                <p className="text-sm text-gray-600">Status: {doc.status}</p>
+                {doc.status !== "Completed" && phaseStatuses[tab] !== "Completed" && (
+                  <Button
+                    onClick={() => {
+                      // Update document status to "Completed"
+                      const updatedDocuments = { ...documents };
+                      updatedDocuments[tab][index] = { ...doc, status: "Completed" };
+                      setDocuments(updatedDocuments);
+                    }}
+                    className="mt-2 fancy-button"
+                  >
+                    Mark as Completed
+                  </Button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </CardContent>
+    </Card>
+  );
 
   return (
     <Tabs defaultValue="discover" className="w-full">
@@ -87,106 +128,24 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
 
       {/* Discover Tab */}
       <TabsContent value="discover" className="mt-6">
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader className="flex justify-between items-center">
-            <CardTitle>Documents</CardTitle>
-            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
-              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
-            </Button>
-          </CardHeader>
-          <CardContent>
-            {documents.discover.length === 0 ? (
-              <p className="text-gray-600">No documents added yet.</p>
-            ) : (
-              <ul className="space-y-2">
-                {documents.discover.map((doc) => (
-                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
-                    <h3 className="font-semibold">{doc.name}</h3>
-                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
-          </CardContent>
-        </Card>
+        {renderDocumentSection("discover")}
       </TabsContent>
 
       {/* Prepare Tab */}
       <TabsContent value="prepare" className="mt-6">
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader className="flex justify-between items-center">
-            <CardTitle>Documents</CardTitle>
-            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
-              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
-            </Button>
-          </CardHeader>
-          <CardContent>
-            {documents.prepare.length === 0 ? (
-              <p className="text-gray-600">No documents added yet.</p>
-            ) : (
-              <ul className="space-y-2">
-                {documents.prepare.map((doc) => (
-                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
-                    <h3 className="font-semibold">{doc.name}</h3>
-                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
-          </CardContent>
-        </Card>
+        {renderDocumentSection("prepare")}
       </TabsContent>
 
       {/* Explore Tab */}
       <TabsContent value="explore" className="mt-6 space-y-6">
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader className="flex justify-between items-center">
-            <CardTitle>Requirement Documents</CardTitle>
-            <Button onClick={() => openAddModal("prepare")} className="fancy-button">
-              <PlusCircle className="mr-2 h-4 w-4" /> Add Document
-            </Button>
-          </CardHeader>
-          <CardContent>
-            {documents.prepare.length === 0 ? (
-              <p className="text-gray-600">No documents added yet.</p>
-            ) : (
-              <ul className="space-y-2">
-                {documents.prepare.map((doc) => (
-                  <li key={doc.id} className="p-2 bg-white rounded-md shadow">
-                    <h3 className="font-semibold">{doc.name}</h3>
-                    <p className="text-sm text-gray-600">Tag: {doc.tag}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
-          </CardContent>
-        </Card>
-        {/* <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Requirements Classification</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">
-              Captured requirements for the business processes (SAP module) will be classified as a standard or a custom
-              requirement. If custom requirement, what all WRICEF components would be required. Also, provides a brief
-              idea of how it can be achieved in S4 HANA.
-            </p>
-            <Link href="/requirements-classification">
-              <Button className="mt-4 fancy-button">Classify Requirements</Button>
-            </Link>
-          </CardContent>
-        </Card> */}
+        {renderDocumentSection("explore")}
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
             <CardTitle>BRD Generation</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-              Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org
-              Structure, Flow, Architecture, etc., captured during the Discover, Prepare and Explore phases
+              Document scope, requirements, customization, Key Data Structure, Potential solution mapping, Org Structure, Flow, Architecture, etc., captured during the Discover, Prepare, and Explore phases.
             </p>
             <Link href="/brd-generation">
               <Button className="mt-4 fancy-button">Generate BRD</Button>
@@ -215,7 +174,7 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-              Configure all the processes selected during the DDA phase and in the detailed requirements phase
+              Configure all the processes selected during the DDA phase and in the detailed requirements phase.
             </p>
           </CardContent>
         </Card>
@@ -225,55 +184,8 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-              Generate code for a custom workflow requirement that is not present in SAP by default
+              Generate code for a custom workflow requirement that is not present in SAP by default.
             </p>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Custom Report (WRICEF) code generation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600 mb-4">
-              Generate code for a custom report that is not present in SAP by default
-            </p>
-            <Link href="/custom-report-generation">
-              <Button className="fancy-button">Generate Custom Report</Button>
-            </Link>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Custom Interface (WRICEF) code generation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">Generate code for a custom interface that is not present in SAP by default</p>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Custom Conversions (WRICEF) code generation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">Generate code for a custom conversion that is not present in SAP by default</p>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Custom Enhancement (WRICEF) code generation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">
-              Generate code for a custom SAP enhancement that is not present in SAP by default
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="fancy-glass fancy-shadow">
-          <CardHeader>
-            <CardTitle>Custom Form (WRICEF) code generation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">Generate code for a custom form that is not present in SAP by default</p>
           </CardContent>
         </Card>
       </TabsContent>
@@ -282,17 +194,17 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
       <TabsContent value="deploy" className="mt-6">
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Custom code deployment</CardTitle>
+            <CardTitle>Custom Code Deployment</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600">Deploy the custom code developed to S4 HANA</p>
+            <p className="text-gray-600">Deploy the custom code developed to S4 HANA.</p>
           </CardContent>
         </Card>
       </TabsContent>
 
       {/* Run Tab */}
       <TabsContent value="run" className="mt-6">
-        {/* Intentionally left empty as per requirements */}
+        {/* Intentionally left empty */}
       </TabsContent>
 
       <AddDocumentModal
@@ -302,6 +214,5 @@ export function ProjectTabs({ projectType, phaseEndDates, currentDate, phaseStat
         tabName={currentTab}
       />
     </Tabs>
-  )
+  );
 }
-

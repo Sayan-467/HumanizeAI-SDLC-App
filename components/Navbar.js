@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -20,12 +20,15 @@ export function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState({ name: "John Doe", role: "Project Manager" })
+  const [user, setUser] = useState({ name: "John Doe" })
 
   useEffect(() => {
     // Check if user is logged in
     const token = localStorage.getItem("authToken")
     setIsLoggedIn(!!token)
+    if (token) {
+      setUser({ name: "John Doe" })
+    }
   }, [])
 
   const handleAuthAction = () => {
@@ -49,8 +52,8 @@ export function Navbar() {
               <Image src="/Logo Humanize_Primary Logo_Horizontal Orientation.png" alt="logo" width={250} height={250} />
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
-            {/* {navItems.map((item) => (
+          {/* <div className="hidden md:flex items-center space-x-4">
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -82,15 +85,15 @@ export function Navbar() {
                   />
                 )}
               </Link>
-            ))} */}
-          </div>
+            ))}
+          </div> */}
           <div className="flex items-center space-x-4">
-            <div className="flex items-center mr-4">
-              <User className="h-5 w-5 text-gray-500 mr-2" />
-              <span className="text-sm text-gray-700">
-                {user.name} - {user.role}
-              </span>
-            </div>
+            {isLoggedIn && (
+              <div className="flex items-center mr-4">
+                <User className="h-5 w-5 text-gray-500 mr-2" />
+                <span className="text-sm text-gray-700">{user.name}</span>
+              </div>
+            )}
             <Button onClick={handleAuthAction} className="fancy-button">
               {isLoggedIn ? "Logout" : "Login"}
             </Button>

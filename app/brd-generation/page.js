@@ -155,6 +155,7 @@ export default function BRDGenerationPage() {
                     placeholder="Section content"
                     rows={6}
                     className="fancy-border"
+                    required 
                   />
                 </div>
                 <div className="flex space-x-2">
@@ -197,4 +198,3 @@ export default function BRDGenerationPage() {
     </div>
   )
 }
-

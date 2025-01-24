@@ -61,9 +61,10 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
             >
               <option value="DDA">DDA</option>
               <option value="PDA">PDA</option>
-              <option value="PDA">PDA</option>
+              <option value="KDA">KDA</option>
               <option value="Detailed Process Requirement">Detailed Process Requirement</option>
               <option value="Organisational Structure">Organisational Structure</option>
+              <option value="Other">Others</option>
             </select>
           </div>
           {/* <div className="space-y-2">

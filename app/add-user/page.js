@@ -70,7 +70,7 @@ export default function AddUserPage() {
 
   return (
     <>
-      <div className="px-28 pt-12">
+      <div className="px-60 pt-12">
         <Link href="/">
           <Button variant="outline" className="mb-4 fancy-border">
             ← Back to Project Page
@@ -78,7 +78,7 @@ export default function AddUserPage() {
         </Link>
       </div>
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-background to-secondary">
-        <Card className="w-[450px] fancy-glass fancy-border">
+        <Card className="w-[750px] fancy-glass fancy-border">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-primary">Add User to Project</CardTitle>
             <CardDescription className="text-primary/70">Enter user details to add them to the project</CardDescription>

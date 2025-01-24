@@ -100,6 +100,9 @@ export function BRDGeneration() {
                   />
                 </div>
                 <div>
+                  <Button onClick={generateAboutClient}>Generate</Button>
+                </div>
+                <div>
                   <Label htmlFor="about-client-content">Generated Content</Label>
                   <Textarea
                     id="about-client-content"
@@ -110,7 +113,6 @@ export function BRDGeneration() {
                   />
                 </div>
                 <div className="flex space-x-2">
-                  <Button onClick={generateAboutClient}>Generate</Button>
                   <Button onClick={saveAboutClient}>
                     <Save className="mr-2 h-4 w-4" /> Save
                   </Button>

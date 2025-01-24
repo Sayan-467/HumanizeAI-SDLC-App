@@ -44,6 +44,10 @@ export default function BRDGenerationPage() {
     setIsAddSectionModalOpen(false)
   }
 
+  const downloadBRD = () => {
+    console.log("Downloading BRD...")
+  }
+
   return (
     <div className="container mx-auto px-28 py-16">
       <Link href="/projects/1">
@@ -109,6 +113,11 @@ export default function BRDGenerationPage() {
                 />
               </div>
               <div>
+                <Button onClick={generateAboutClient} className="fancy-button">
+                  Generate
+                </Button>
+              </div>
+              <div>
                 <Label htmlFor="about-client-content">Generated Content</Label>
                 <Textarea
                   id="about-client-content"
@@ -120,9 +129,6 @@ export default function BRDGenerationPage() {
                 />
               </div>
               <div className="flex space-x-2">
-                <Button onClick={generateAboutClient} className="fancy-button">
-                  Generate
-                </Button>
                 <Button onClick={saveAboutClient} className="fancy-button">
                   <Save className="mr-2 h-4 w-4" /> Save
                 </Button>
@@ -155,7 +161,7 @@ export default function BRDGenerationPage() {
                     placeholder="Section content"
                     rows={6}
                     className="fancy-border"
-                    required 
+                    required
                   />
                 </div>
                 <div className="flex space-x-2">
@@ -186,9 +192,24 @@ export default function BRDGenerationPage() {
         ))}
       </Accordion>
 
-      <Button onClick={() => setIsAddSectionModalOpen(true)} className="mt-4 fancy-button">
-        <PlusCircle className="mr-2 h-4 w-4" /> Add Section
-      </Button>
+      <div className="flex justify-start items-center my-6 gap-4">
+        <Button onClick={() => setIsAddSectionModalOpen(true)} className="fancy-button">
+          <PlusCircle className="mr-2 h-4 w-4" /> Add Section
+        </Button>
+        
+        <Button
+          onClick={downloadBRD}
+          className="fancy-button"
+        >Generate BRD</Button>
+
+        <Button
+          onClick={() => console.log(`Preview content for ${section.title}`)}
+          variant="outline"
+          className="fancy-button"
+        >
+          <Eye className="mr-2 h-4 w-4" /> Preview BRD
+        </Button>
+      </div>
 
       <AddSectionModal
         isOpen={isAddSectionModalOpen}

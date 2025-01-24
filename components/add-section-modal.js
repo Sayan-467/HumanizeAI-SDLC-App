@@ -38,7 +38,7 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] fancy-glass fancy-border">
+      <DialogContent className="sm:max-w-[600px] fancy-glass fancy-border bg-gradient-to-br from-white to-blue-50">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
             Section

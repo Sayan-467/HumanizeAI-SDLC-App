@@ -59,8 +59,8 @@ export default function BRDGenerationPage() {
 
       <Accordion type="single" collapsible className="w-full space-y-4">
         <AccordionItem value="cover-page" className="fancy-glass fancy-shadow">
-          <AccordionTrigger className="px-4 py-2">Cover Page</AccordionTrigger>
-          <AccordionContent className="px-4 py-2">
+          <AccordionTrigger className="px-6 py-2">Cover Page</AccordionTrigger>
+          <AccordionContent className="px-6 py-2">
             <p>Cover Page content will be generated from project details.</p>
             <Button className="mt-2 fancy-button" onClick={() => console.log("Preview Cover Page")}>
               <Eye className="mr-2 h-4 w-4" /> Preview
@@ -69,8 +69,8 @@ export default function BRDGenerationPage() {
         </AccordionItem>
 
         <AccordionItem value="version-history" className="fancy-glass fancy-shadow">
-          <AccordionTrigger className="px-4 py-2">Version History</AccordionTrigger>
-          <AccordionContent className="px-4 py-2">
+          <AccordionTrigger className="px-6 py-2">Version History</AccordionTrigger>
+          <AccordionContent className="px-6 py-2">
             <p>Version History will be generated from project details.</p>
             <Button className="mt-2 fancy-button" onClick={() => console.log("Preview Version History")}>
               <Eye className="mr-2 h-4 w-4" /> Preview
@@ -79,10 +79,10 @@ export default function BRDGenerationPage() {
         </AccordionItem>
 
         <AccordionItem value="about-client" className="fancy-glass fancy-shadow">
-          <AccordionTrigger className="px-4 py-2">About The Client</AccordionTrigger>
+          <AccordionTrigger className="px-6 py-2">About The Client</AccordionTrigger>
           <AccordionContent className="px-4 py-2">
             <div className="space-y-4">
-              <div>
+              <div className="px-2">
                 <Label htmlFor="about-client-heading">Heading/Title</Label>
                 <Input
                   id="about-client-heading"
@@ -92,7 +92,7 @@ export default function BRDGenerationPage() {
                   className="fancy-border"
                 />
               </div>
-              <div>
+              <div className="px-2">
                 <Label htmlFor="about-client-url">Company URL</Label>
                 <Input
                   id="about-client-url"
@@ -102,7 +102,7 @@ export default function BRDGenerationPage() {
                   className="fancy-border"
                 />
               </div>
-              <div>
+              <div className="px-2">
                 <Label htmlFor="about-client-instructions">Instructions/Prompts</Label>
                 <Textarea
                   id="about-client-instructions"
@@ -112,12 +112,15 @@ export default function BRDGenerationPage() {
                   className="fancy-border"
                 />
               </div>
-              <div>
+              <div className="px-2">
                 <Button onClick={generateAboutClient} className="fancy-button">
                   Generate
                 </Button>
+                <Button onClick={generateAboutClient} className="fancy-button">
+                  Re-generate
+                </Button>
               </div>
-              <div>
+              <div className="px-2">
                 <Label htmlFor="about-client-content">Generated Content</Label>
                 <Textarea
                   id="about-client-content"
@@ -128,7 +131,7 @@ export default function BRDGenerationPage() {
                   className="fancy-border"
                 />
               </div>
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 px-2">
                 <Button onClick={saveAboutClient} className="fancy-button">
                   <Save className="mr-2 h-4 w-4" /> Save
                 </Button>
@@ -145,8 +148,9 @@ export default function BRDGenerationPage() {
 
         {customSections.map((section, index) => (
           <AccordionItem key={index} value={`custom-section-${index}`} className="fancy-glass fancy-shadow">
-            <AccordionTrigger className="px-4 py-2">{section.title}</AccordionTrigger>
-            <AccordionContent className="px-4 py-2">
+            <AccordionContent className="px-6 py-2">{section.type}</AccordionContent>
+            <AccordionTrigger className="px-6 py-2">{section.title}</AccordionTrigger>
+            <AccordionContent className="px-6 py-2">
               <div className="space-y-4">
                 <div>
                   <Label htmlFor={`custom-section-${index}-content`}>Content</Label>
@@ -164,10 +168,26 @@ export default function BRDGenerationPage() {
                     required
                   />
                 </div>
+                <Button onClick={() => console.log(`Generate content for ${section.title}`)} className="fancy-button">
+                  Generate
+                </Button>
+                <div>
+                  <Label htmlFor={`custom-section-${index}-content`}>Generated Content</Label>
+                  <Textarea
+                    id={`custom-section-${index}-content`}
+                    value={section.content}
+                    onChange={(e) => {
+                      const updatedSections = [...customSections]
+                      updatedSections[index].content = e.target.value
+                      setCustomSections(updatedSections)
+                    }}
+                    placeholder="Section content"
+                    rows={6}
+                    className="fancy-border"
+                    required
+                  />
+                </div>
                 <div className="flex space-x-2">
-                  <Button onClick={() => console.log(`Generate content for ${section.title}`)} className="fancy-button">
-                    Generate
-                  </Button>
                   <Button onClick={() => console.log(`Save content for ${section.title}`)} className="fancy-button">
                     <Save className="mr-2 h-4 w-4" /> Save
                   </Button>
@@ -196,7 +216,7 @@ export default function BRDGenerationPage() {
         <Button onClick={() => setIsAddSectionModalOpen(true)} className="fancy-button">
           <PlusCircle className="mr-2 h-4 w-4" /> Add Section
         </Button>
-        
+
         <Button
           onClick={downloadBRD}
           className="fancy-button"

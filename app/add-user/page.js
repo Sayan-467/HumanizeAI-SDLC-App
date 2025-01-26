@@ -70,7 +70,7 @@ export default function AddUserPage() {
 
   return (
     <>
-      <div className="px-60 pt-12">
+      <div className="px-72 pt-12 text-blue-600">
         <Link href="/">
           <Button variant="outline" className="mb-4 fancy-border">
             ← Back to Project Page
@@ -78,15 +78,15 @@ export default function AddUserPage() {
         </Link>
       </div>
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-background to-secondary">
-        <Card className="w-[750px] fancy-glass fancy-border">
+        <Card className="w-[600px] fancy-glass fancy-border">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-primary">Add User to Project</CardTitle>
-            <CardDescription className="text-primary/70">Enter user details to add them to the project</CardDescription>
+            <CardTitle className="text-2xl font-bold text-blue-500">Add User to Project</CardTitle>
+            <CardDescription className="text-blue-500">Enter user details to add them to the project</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-blue-500">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -98,7 +98,7 @@ export default function AddUserPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name" className="text-blue-500">Name</Label>
                 <Input
                   id="name"
                   value={name}
@@ -110,7 +110,7 @@ export default function AddUserPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="contact">Contact</Label>
+                <Label htmlFor="contact" className="text-blue-500">Contact</Label>
                 <Input
                   id="contact"
                   value={contact}
@@ -122,7 +122,7 @@ export default function AddUserPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="productType">Product Type</Label>
+                <Label htmlFor="productType" className="text-blue-500">Product Type</Label>
                 <Select onValueChange={setProductType} defaultValue={productType}>
                   <SelectTrigger className="fancy-border">
                     <SelectValue placeholder="Select product type" />
@@ -135,7 +135,7 @@ export default function AddUserPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="role">Role</Label>
+                <Label htmlFor="role" className="text-blue-500">Role</Label>
                 <Select onValueChange={setRole}>
                   <SelectTrigger className="fancy-border">
                     <SelectValue placeholder="Select role" />
@@ -152,7 +152,7 @@ export default function AddUserPage() {
             </form>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full fancy-button" onClick={handleSubmit}>
+            <Button type="submit" className="w-[30%] fancy-button" onClick={handleSubmit}>
               Add User
             </Button>
           </CardFooter>

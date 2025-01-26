@@ -10,6 +10,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
   const [tag, setTag] = useState("")
   const [inputFile, setInputFile] = useState(null)
   const [notes, setNotes] = useState(null)
+  const [isOtherSelected, setIsOtherSelected] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,17 +29,21 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
     setNotes(null)
   }
 
+  const handleSelectedChange = (e) => {
+    setIsOtherSelected(e.target.value)
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] fancy-glass fancy-border bg-gradient-to-br from-white to-blue-50">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+          <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
             Document
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-gray-700">
+            <Label htmlFor="name" className="text-blue-500">
               Name (Descriptive)
             </Label>
             <Input
@@ -51,7 +56,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="productType" className="text-right">
+            <Label htmlFor="productType" className="text-right text-blue-500">
               Tag/Label (Unique)
             </Label>
             <select
@@ -64,8 +69,15 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
               <option value="KDA">KDA</option>
               <option value="Detailed Process Requirement">Detailed Process Requirement</option>
               <option value="Organisational Structure">Organisational Structure</option>
-              <option value="Other">Others</option>
+              <option value="Others">Others</option>
             </select>
+
+            {isOtherSelected === 'Others' && <Input
+              type="text"
+              name="customTag"
+              placeholder="Enter your custom tag"
+              className="bg-background/50 text-primary border border-input rounded-md p-2 px-4 mx-4"
+            />}
           </div>
           {/* <div className="space-y-2">
             <Label htmlFor="tag" className="text-gray-700">
@@ -81,7 +93,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
             />
           </div> */}
           <div className="space-y-2">
-            <Label htmlFor="inputFile" className="text-gray-700">
+            <Label htmlFor="inputFile" className="text-blue-500">
               Input File (xlsx, word, pdf)
             </Label>
             <Input
@@ -92,10 +104,10 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
               required
               className="fancy-border transition-all duration-200 hover:shadow-md"
             />
-            <p className="text-xs text-gray-500">Max file size: 10MB</p>
+            <p className="text-xs text-blue-400">Max file size: 10MB</p>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="notes" className="text-gray-700">
+            <Label htmlFor="notes" className="text-blue-500">
               Notes (txt, word)
             </Label>
             <Input
@@ -108,7 +120,7 @@ export function AddDocumentModal({ isOpen, onClose, onAdd, tabName }) {
           </div>
           <Button
             type="submit"
-            className="w-full fancy-button bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+            className="w-full fancy-button bg-gradient-to-r from-blue-500 to-purple-500"
           >
             Add Document
           </Button>

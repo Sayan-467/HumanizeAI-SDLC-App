@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -21,8 +22,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-4rem)] bg-gradient-to-br from-background to-secondary">
-      <Card className="w-[350px] fancy-glass fancy-border">
+    <div className="flex justify-center items-center min-h-[calc(100vh-4rem)] bg-gradient-to-br from-background to-secondary gap-12">
+      <Image src={"/loginpic.jpeg"} alt={"login"} width={450} height={300} />
+      <Card className="w-[450px] fancy-glass fancy-border">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-primary">Login</CardTitle>
           <CardDescription className="text-primary/70">Enter your credentials to access your account</CardDescription>

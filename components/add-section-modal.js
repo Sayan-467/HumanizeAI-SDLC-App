@@ -40,13 +40,30 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[600px] fancy-glass fancy-border bg-gradient-to-br from-white to-blue-50">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+          <DialogTitle className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
             Section
           </DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="title">Heading/Title</Label>
+        <form onSubmit={handleSubmit} className="space-y-4 mt-2 mx-2">
+          <div className="space-y-1">
+            <Label htmlFor="productType" className="text-right text-blue-500">
+              Section Type :
+            </Label>
+            <select
+              id="productType"
+              name="productType"
+              className="col-span-3 bg-background/50 text-primary border border-input rounded-md p-2 px-8 mx-4"
+            >
+              <option value="DDA">DDA</option>
+              <option value="PDA">PDA</option>
+              <option value="KDA">KDA</option>
+              <option value="Detailed Process Requirement">Detailed Process Requirement</option>
+              <option value="Organisational Structure">Organisational Structure</option>
+              <option value="Other">Others</option>
+            </select>
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="title" className="text-blue-600">Heading/Title</Label>
             <Input
               id="title"
               value={title}
@@ -55,8 +72,8 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               className="fancy-border"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="instructions">Instructions/Prompts</Label>
+          <div className="space-y-1">
+            <Label htmlFor="instructions" className="text-blue-600">Instructions/Prompts</Label>
             <Textarea
               id="instructions"
               value={instructions}
@@ -81,14 +98,14 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
               className="fancy-border"
             />
           </div> */}
-          <div className="space-y-2">
-            <Label htmlFor="generated-content">Generated Content</Label>
+          <div className="space-y-1">
+            <Label htmlFor="generated-content" className="text-blue-600">Generated Content</Label>
             <Textarea
               id="generated-content"
               value={generatedContent}
               onChange={(e) => setGeneratedContent(e.target.value)}
               placeholder="Generated content will appear here"
-              rows={4}
+              rows={3}
               className="fancy-border"
             />
           </div>
@@ -96,14 +113,14 @@ export function AddSectionModal({ isOpen, onClose, onAdd }) {
             <Button type="submit" className="fancy-button">
               Save
             </Button>
-            <Button type="button" onClick={resetForm} variant="outline" className="fancy-border">
+            <Button type="button" onClick={resetForm} variant="outline" className="fancy-border bg-gray-400">
               Clear All
             </Button>
             <Button
               type="button"
               onClick={() => console.log("Preview content")}
               variant="outline"
-              className="fancy-border"
+              className="fancy-border bg-gray-400"
             >
               Preview
             </Button>

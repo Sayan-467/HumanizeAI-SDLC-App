@@ -63,7 +63,7 @@ export function ProjectTabs({
   const renderDocumentSection = (tab) => (
     <Card className="fancy-glass fancy-shadow">
       <CardHeader className="flex justify-between items-center">
-        <CardTitle>Documents</CardTitle>
+        <CardTitle className="my-2 text-blue-500 text-lg">Documents</CardTitle>
         {phaseStatuses[tab] !== "Completed" && (
           <Button onClick={() => openAddModal(tab)} className="fancy-button">
             <PlusCircle className="mr-2 h-4 w-4" /> Add Document
@@ -72,7 +72,7 @@ export function ProjectTabs({
       </CardHeader>
       <CardContent>
         {documents[tab].length === 0 ? (
-          <p className="text-gray-600">No documents added yet.</p>
+          <p className="text-gray-600 mx-4 mb-2">No documents added yet.</p>
         ) : (
           <ul className="space-y-2">
             {documents[tab].map((doc, index) => (
@@ -139,7 +139,7 @@ export function ProjectTabs({
       {/* Explore Tab */}
       <TabsContent value="explore" className="mt-6 space-y-6">
         {renderDocumentSection("explore")}
-        <Card className="fancy-glass fancy-shadow">
+        <Card className="fancy-glass fancy-shadow px-4">
           <CardHeader>
             <CardTitle>BRD Generation</CardTitle>
           </CardHeader>
@@ -153,7 +153,7 @@ export function ProjectTabs({
             <p className="text-sm mt-2 font-light">Instructions to fill each section</p>
           </CardContent>
         </Card>
-        <Card className="fancy-glass fancy-shadow">
+        <Card className="fancy-glass fancy-shadow px-4">
           <CardHeader>
             <CardTitle>Test Plan Generation</CardTitle>
           </CardHeader>

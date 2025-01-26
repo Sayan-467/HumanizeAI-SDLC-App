@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useState } from "react"
+import Image from "next/image"
 import { useFormStatus } from "react-dom"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,9 +21,9 @@ import { useRouter } from "next/navigation"
 
 export default function ProjectListPage() {
   const [projects, setProjects] = useState([
-    { id: 1, name: "E-commerce Platform", status: "In Progress" },
-    { id: 2, name: "CRM System", status: "Planning" },
-    { id: 3, name: "Mobile App", status: "Testing" },
+    { id: 1, name: "ERP Transformation", status: "In Progress", image: "/project1.jpeg" },
+    { id: 2, name: "CRM System", status: "Planning", image: "/project2.png" },
+    { id: 3, name: "Mobile App", status: "Testing", image: "/project3.jpeg" },
   ])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -75,32 +76,27 @@ export default function ProjectListPage() {
   };
 
   return (
-    <div className="space-y-6 px-16 py-12">
+    <div className="space-y-6 px-28 py-12">
       <Link href="/">
         <Button variant="outline" className="mb-4 fancy-border">
           ← Back to Home Page
         </Button>
       </Link>
-      <h1 className="text-3xl font-bold text-primary">Projects</h1>
-      <div className="flex justify-between items-center space-x-2">
-        <Input
-          className="w-64 bg-background/50 text-primary placeholder:text-primary/50"
-          type="search"
-          placeholder="Search projects..."
-        />
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-blue-600 drop-shadow-lg">Projects</h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-accent hover:bg-accent/80 text-accent-foreground">Create Project</Button>
+            <Button className="fancy-button">Create Project</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px] bg-secondary text-primary">
             <DialogHeader>
-              <DialogTitle>Project</DialogTitle>
-              <DialogDescription>Create a new project for your SDLC workflow.</DialogDescription>
+              <DialogTitle className="text-blue-600 text-xl font-semibold">Project</DialogTitle>
+              <DialogDescription className="text-blue-500">Create a new project for your SDLC workflow.</DialogDescription>
             </DialogHeader>
             <form onSubmit={addProject}>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
+                  <Label htmlFor="name" className="text-right text-blue-500">
                     Name
                   </Label>
                   <Input
@@ -111,7 +107,7 @@ export default function ProjectListPage() {
                   />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="description" className="text-right">
+                  <Label htmlFor="description" className="text-right text-blue-500">
                     Description
                   </Label>
                   <Textarea
@@ -122,7 +118,7 @@ export default function ProjectListPage() {
                   />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="productType" className="text-right">
+                  <Label htmlFor="productType" className="text-right text-blue-500">
                     Product Type
                   </Label>
                   <select
@@ -136,7 +132,7 @@ export default function ProjectListPage() {
                   </select>
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="industryClassification" className="text-right">
+                  <Label htmlFor="industryClassification" className="text-right text-blue-500">
                     Industry Classification
                   </Label>
                   <select
@@ -157,7 +153,7 @@ export default function ProjectListPage() {
                   </select>
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="startDate" className="text-right">
+                  <Label htmlFor="startDate" className="text-right text-blue-500">
                     Start Date
                   </Label>
                   <Input
@@ -168,7 +164,7 @@ export default function ProjectListPage() {
                   />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="discoverEndDate" className="text-right">
+                  <Label htmlFor="discoverEndDate" className="text-right text-blue-500">
                     Project End Date
                   </Label>
                   <Input
@@ -224,11 +220,43 @@ export default function ProjectListPage() {
                 </div> */}
               </div>
               <DialogFooter>
-                <SubmitButton />
+                <SubmitButton className="fancy-button" />
               </DialogFooter>
             </form>
           </DialogContent>
         </Dialog>
+      </div>
+      <div className="flex justify-between items-center space-x-2">
+        <div className="relative w-full max-w-[928px]">
+          <svg
+            className="absolute left-4 top-1/2 transform -translate-y-1/2"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clipPath="url(#clip0_44_167)">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M21.5306 20.4694L16.8366 15.7762C19.6629 12.383 19.3204 7.36693 16.0591 4.38935C12.7978 1.41176 7.77134 1.526 4.64867 4.64867C1.526 7.77134 1.41176 12.7978 4.38935 16.0591C7.36693 19.3204 12.383 19.6629 15.7762 16.8366L20.4694 21.5306C20.7624 21.8237 21.2376 21.8237 21.5306 21.5306C21.8237 21.2376 21.8237 20.7624 21.5306 20.4694ZM3.75 10.5C3.75 6.77208 6.77208 3.75 10.5 3.75C14.2279 3.75 17.25 6.77208 17.25 10.5C17.25 14.2279 14.2279 17.25 10.5 17.25C6.77379 17.2459 3.75413 14.2262 3.75 10.5Z"
+                fill="#369EFF"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_44_167">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+          <Input
+            className="w-full bg-[#f8f9fa] text-primary placeholder:text-blue-500 rounded-[16px] shadow-md pl-12 py-6"
+            type="search"
+            placeholder="Search projects..."
+          />
+        </div>
+
         {/* <Link href="/add-user">
           <Button className="bg-accent hover:bg-accent/80 text-accent-foreground ml-2">Add User</Button>
         </Link> */}
@@ -236,6 +264,7 @@ export default function ProjectListPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map(project => (
           <Card key={project.id} className={`bg-secondary/50 backdrop-blur-sm border-accent/20`}>
+            <Image src={project.image} alt={project.name} width={300} height={200} className="rounded-t-lg object-cover w-full h-[200px]" />
             <CardHeader>
               <CardTitle className="text-primary font-semibold text-xl">{project.name}</CardTitle>
               <CardDescription className="text-primary/70"><span className='font-semibold text-md'>Product Type: </span> <span className='text-md'>{project.productType}</span></CardDescription>

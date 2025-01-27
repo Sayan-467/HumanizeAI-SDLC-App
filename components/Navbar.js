@@ -88,15 +88,31 @@ export function Navbar() {
             ))}
           </div> */}
           <div className="flex items-center space-x-4">
-            {isLoggedIn && (
-              <div className="flex items-center mr-4">
-                <User className="h-5 w-5 text-gray-500 mr-2" />
-                <span className="text-sm text-gray-700">{user.name}</span>
-              </div>
+          {isLoggedIn ? (
+              <>
+                <div className="flex items-center mr-4">
+                  <User className="h-5 w-5 text-gray-500 mr-2" />
+                  <span className="text-sm text-gray-700">
+                    {user.name} - {user.role}
+                  </span>
+                </div>
+                <Button onClick={handleAuthAction} className="fancy-button">
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button onClick={() => router.push("/login")} className="fancy-button">
+                  Login
+                </Button>
+                <Button onClick={() => router.push("/signup")} className="fancy-button">
+                  Sign Up
+                </Button>
+              </>
             )}
-            <Button onClick={handleAuthAction} className="fancy-button">
+            {/* <Button onClick={handleAuthAction} className="fancy-button">
               {isLoggedIn ? "Logout" : "Login"}
-            </Button>
+            </Button> */}
             <div className="md:hidden">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -122,4 +138,3 @@ export function Navbar() {
     </nav>
   )
 }
-

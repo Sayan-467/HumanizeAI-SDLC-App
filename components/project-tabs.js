@@ -168,7 +168,7 @@ export function ProjectTabs({
 
       {/* Realize Tab */}
       <TabsContent value="realize" className="mt-6 space-y-6">
-        <Card className="fancy-glass fancy-shadow">
+        {/* <Card className="fancy-glass fancy-shadow">
           <CardHeader>
             <CardTitle>Standard Configuration</CardTitle>
           </CardHeader>
@@ -177,15 +177,18 @@ export function ProjectTabs({
               Configure all the processes selected during the DDA phase and in the detailed requirements phase.
             </p>
           </CardContent>
-        </Card>
+        </Card> */}
         <Card className="fancy-glass fancy-shadow">
           <CardHeader>
-            <CardTitle>Custom Workflow (WRICEF) code generation</CardTitle>
+            <CardTitle>Code Generation for Custom Form</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
               Generate code for a custom workflow requirement that is not present in SAP by default.
             </p>
+            <Link href="/custom-form-generation">
+              <Button className="mt-4 fancy-button">Code Generation</Button>
+            </Link>
           </CardContent>
         </Card>
       </TabsContent>
